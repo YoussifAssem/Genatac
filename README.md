@@ -1,2 +1,2 @@
-# Genatac
+# Genetics
 We aim to create a system that can predict the possible genetic diseases in the new generation of a new couple from studying mutations of both genders, in addition it has another section that can be extended or have as another idea. It can be defined as a system that aims to proof the parentage of children from their parents and this  can also be continued to other sections based on information obtained from multiple doctors and informative papers.
