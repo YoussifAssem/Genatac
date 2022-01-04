@@ -59,7 +59,7 @@
         <div id="page-content-wrapper">
             <a href="#menu-toggle" class="menuopener" id="menu-toggle"><i class="fa fa-bars"></i></a>
 			
-            <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('uploads/barber_slider.jpg');">
+            <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('uploads/gg.png');">
                 <div class="container-fluid">
                     <div class="row">
 						<div id="full-width" class="owl-carousel owl-theme">
@@ -68,8 +68,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<p class="lead">With SMBarber responsive landing page template, you can showcase your next barber shop websites!</p>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">APPOINTMENT NOW</a>
+										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>
@@ -78,8 +77,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<p class="lead">With SMBarber responsive landing page template, you can showcase your next barber shop websites!</p>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">APPOINTMENT NOW</a>
+										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>
@@ -88,8 +86,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<p class="lead">With SMBarber responsive landing page template, you can showcase your next barber shop websites!</p>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">APPOINTMENT NOW</a>
+										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>
@@ -107,11 +104,10 @@
                             <div class="message-box">
                                 <h4>About</h4>
                                 <h2>Welcome to Genetics</h2>
-                                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
+                               
 
-                                <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo. </p>
-
-                                <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</a>
+                                <p> We aim to create a system that can predict the possible genetic diseases in the new generation of a new couple from studying mutations of both genders, in addition it has another section that can be extended or have as another idea. It can be defined as a system that aims to proof the parentage of children from their parents and this can also be continued to other sections based on information obtained from multiple doctors and informative papers.</p>
+                                
                             </div><!-- end messagebox -->
                         </div><!-- end col -->
                     </div><!-- end row -->
@@ -128,22 +124,14 @@
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="tab_a">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque tortor mi, eget mattis velit sagittis id. Duis ornare mauris eu eros interdum, vitae finibus arcu ultricies. Donec vitae felis eleifend, dignissim erat a, pretium diam. Donec eu massa odio. Suspendisse et ornare lacus, pharetra imperdiet ligula.</p>
-										<p>Vestibulum ac quam id lorem semper condimentum. Nulla vel ligula turpis. Nullam luctus, mi nec rhoncus gravida, tortor est semper purus, a feugiat sapien odio non urna. Fusce pellentesque neque ut nisi rhoncus imperdiet. Sed eu purus vel turpis consectetur convallis. Donec a dolor tellus. Phasellus dignissim erat nec ipsum condimentum sollicitudin. </p>
+										<p>Our main goal is to develop a system model that can detect genetic disorders in new generations born from two new couples by reading altered genes from both genders' SNPs or entire exomes in a specific genetic condition.They will learn what percentage of genetic disorders their children will inherit from the model.Recognizing that there may be an issue and taking actions to avoid it from becoming a problem in the future will be immensely advantageous for those with historic genetic illnesses in their family lines.  The system will be extended to have a cross over between males and females from also different races to make the system more public. On the other hand we aim to make a part in the system for proof of parentage by studying parental identification problem using alleles on specific rs number or whole exomes.</p>
 									</div>
 									<div class="tab-pane fade" id="tab_b">
-										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-										<ul>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>User Experince</li>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>Full Devices</li>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>Awesome Design</li>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>Visual Impact</li>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>100% Sincronized</li>
-											<li><i class="fa fa-circle-o" aria-hidden="true"></i>Custom Support</li>
-										</ul>
+										<p>Genes are the most important factor in people. A hereditary ailment is a disease caused in part or entirely by a deviation from the normal DNA sequence. Without even realizing it, changed genes could be carried by anyone and passed on to his children. Consider the scenario in which we have a model that can be implemented forecast which genetic disease will appear in future generations based on both genders' mutations. After extracting the gene, based on what was learnt from the mutations, a forecast will be made to the next generation of that particular genetic mutation condition. as well as the ailment we'll be focusing on. We also want to create a new section that focuses on confirmation of parenthood. Users will enter a whole exomes, and we will ask them if the youngster is their son or not, The following sections go through exactly what the model is and how it works.</p>
+										
 									</div>
 									<div class="tab-pane fade" id="tab_c">
-										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										<p>We are a team from MIU university create a project genetics to know more about genetics please click on WhyUs?</p>
 									</div>
 								</div><!-- tab content -->
 							</div>
@@ -321,7 +309,7 @@ His research interest is in pattern recognition specifically in character recogn
                 <div class="container-fluid">
                     <div class="section-title row text-center">
                         <div class="col-md-8 col-md-offset-2">
-                        <h3>WEeeeee</h3>
+                        <h3>when we use Genetics?</h3>
                         </div>
                     </div><!-- end title -->
 
@@ -330,25 +318,19 @@ His research interest is in pattern recognition specifically in character recogn
                             <div class="testi-carousel owl-carousel owl-theme">                                
                                 <div class="testimonial clearfix">
                                     <div class="desc">
-                                        <h3><i class="fa fa-quote-left"></i> Wonderful Support!</h3>
-                                        <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                                        <h3><i class="fa fa-quote-left"></i> Scenario 1</h3>
+                                        <p class="lead">A new married couple decides that they want to have a child, where they want to know if the new child will have a genetic disease or not, so they started to use the system application, both of them enters their mutated genes, as the system starts to analyze data and sends results whether or not he or she carries a genetic mutation to a specific disease that may be passed down to future generations.</p>
                                     </div>
-                                    <div class="testi-meta">
-                                        <img src="uploads/testi_01.png" alt="" class="img-responsive alignright">
-                                        <h4>James Fernando <small>- Manager of Racer</small></h4>
-                                    </div>
+                                   
                                     <!-- end testi-meta -->
                                 </div>
                                 <!-- end testimonial -->
                                 <div class="testimonial clearfix">
                                     <div class="desc">
-                                        <h3><i class="fa fa-quote-left"></i> Awesome Services!</h3>
-                                        <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you completed.</p>
+                                        <h3><i class="fa fa-quote-left"></i> Scenario 2</h3>
+                                        <p class="lead">The user denies the fatherhood of his child, and his family wants to prove it. Rather than filing a lawsuit, they went to a laboratory and performed a test on specific rs numbers or whole-exome sequencing. Then they use our software to enter alleles on the same rs numbers or their entire exomes, and the app verify whether or not the child is blood related or not.</p>
                                     </div>
-                                    <div class="testi-meta">
-                                        <img src="uploads/testi_02.png" alt="" class="img-responsive alignright">
-                                        <h4>Jacques Philips <small>- Designer</small></h4>
-                                    </div>
+                                    
                                     <!-- end testi-meta -->
                                 </div>
                                 <!-- end testimonial -->
@@ -394,15 +376,10 @@ His research interest is in pattern recognition specifically in character recogn
                                 <a href="#">Faq</a>
                                 <a href="#">Contact</a>
                             </p>
-                            <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">SMBarber</a> Design By : <a href="https://html.design/">html design</a></p>
-                        </div>
+</div>
+                           
 
-                        <div class="footer-right">
-                            <form method="get" action="#">
-                                <input placeholder="Subscribe our newsletter.." name="search">
-                                <i class="fa fa-envelope-o"></i>
-                            </form>
-                        </div>
+                       
                     </div>
                 </div><!-- end container -->
             </div><!-- end copyrights -->
