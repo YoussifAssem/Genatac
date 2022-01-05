@@ -39,7 +39,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body class="barber_version">
 
     <!-- LOADER -->
     <!--
@@ -74,7 +74,7 @@
     </div>
     <div class="action">
      
-      <button>Signup</button>
+      <a href='#'>sign Up</a>
     </div>
   </form>
 </php>

@@ -39,7 +39,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body class="barber_version">
 
     <!-- LOADER -->
     <!--
@@ -72,8 +72,8 @@
       <a href="#" class="link">Forgot Your Password?</a>
     </div>
     <div class="action">
-      <button>Register</button>
-      <button>Sign in</button>
+      <a href='signup.php'>Register</a>
+      <a href='#'>sign In</a>
     </div>
   </form>
 </php>

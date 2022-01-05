@@ -12,11 +12,13 @@
         <ul class="sidebar-nav">
        
             <li><a class="active" href="home.php">Home</a></li>
-            <li><a href="">logIn</a></li>
-            <li><a href="">signUp</a></li>
+            <li><a href="login.php">logIn</a></li>
+            <li><a href="signup.php">signUp</a></li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="services.php">Our Services</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="paternityRs.php">PaternityTest</a></li>
+            
             
             
         </ul>
