@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
 
+  
+  </style>
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
@@ -32,7 +35,7 @@
     <link rel="stylesheet" href="css/custom.css">
      <!-- Custom CSS -->
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/menu.css">
+    
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -69,10 +72,9 @@
       <div class="input-field">
         <input type="password" placeholder="Password" autocomplete="new-password">
       </div>
-      <a href="#" class="link">Forgot Your Password?</a>
+      <a href="signup.php" class="link">create new account?</a>
     </div>
     <div class="action">
-      <a href='signup.php'>Register</a>
       <a href='#'>sign In</a>
     </div>
   </form>
