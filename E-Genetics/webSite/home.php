@@ -68,7 +68,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
+										<a href="signup.php" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
+										<a href="signup.php" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>
@@ -86,7 +86,7 @@
 									<div class="big-tagline text-center">
 										<h2><strong>Genteics</strong><br>
 										in Egypt</h2>
-										<a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
+										<a href="signup.php" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">sign Up</a>
 									</div>
 								</div>
 							</div>

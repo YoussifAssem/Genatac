@@ -33,7 +33,7 @@ GRADIENTS
 .nav-pills > li.active > a:hover,
 .icon-wrapper:hover i,
 .grd1 {
-    color: #ffffff;
+    color: blue;
     background: #db00ce;
     background: -moz-linear-gradient(left, #db00ce 0%, #2750ff 100%);
     background: -webkit-linear-gradient(left, #db00ce 0%, #2750ff 100%);

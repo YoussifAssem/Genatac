@@ -79,7 +79,7 @@ body.demos .service-widget {
 }
 
 body.demos .container-fluid {
-    max-width: 1080px
+    max-width: 1080px;
 }
 
 a {
@@ -332,6 +332,7 @@ a img.aligncenter {
 
 .megamenu .container-fluid {
     position: relative;
+
 }
 
 .megamenu .dropdown-menu {
