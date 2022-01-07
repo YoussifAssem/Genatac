@@ -106,8 +106,7 @@
                                 <h2>Welcome to Genetics</h2>
                                
 
-                                <p> We aim to create a system that can predict the possible genetic diseases in the new generation of a new couple from studying mutations of both genders, in addition it has another section that can be extended or have as another idea. It can be defined as a system that aims to proof the parentage of children from their parents and this can also be continued to other sections based on information obtained from multiple doctors and informative papers.</p>
-                                
+                                <p>People's genes are the most crucial factor in determining paternity in determining paternity. One of the most serious concerns in the world is the denial of lineage. Many fathers deny their children's parentage, and it takes them a long time to establish it because they should go to court and sue for child custody. We want to build a system that works for both parties. On the first side, with rs numbers, the family does a test on some of their rs numbers at various points on the DNA and uploads the file to the system, which then informs them whether or not the child is connected to their father. In addition, we want to add another side that takes the entire genome or exome of the family we're studying. We'll do our best to optimize our system for both for them and let them know whether or not the child is related to this father. </p>
                             </div><!-- end messagebox -->
                         </div><!-- end col -->
                     </div><!-- end row -->
@@ -124,10 +123,10 @@
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="tab_a">
-										<p>Our main goal is to develop a system model that can detect genetic disorders in new generations born from two new couples by reading altered genes from both genders' SNPs or entire exomes in a specific genetic condition.They will learn what percentage of genetic disorders their children will inherit from the model.Recognizing that there may be an issue and taking actions to avoid it from becoming a problem in the future will be immensely advantageous for those with historic genetic illnesses in their family lines.  The system will be extended to have a cross over between males and females from also different races to make the system more public. On the other hand we aim to make a part in the system for proof of parentage by studying parental identification problem using alleles on specific rs number or whole exomes.</p>
+										<p>Our main goal is to develop a system model that can prove the parentage of someone based on their alleles in every rsnumber in the family. Creating a system that can read those rsnumbers in the whole family and compare them with each other based on their alleles and their blood type. It can also be extended from reading only their rsnumbers to reading their whole genome or whole exome data.</p>
 									</div>
 									<div class="tab-pane fade" id="tab_b">
-										<p>Genes are the most important factor in people. A hereditary ailment is a disease caused in part or entirely by a deviation from the normal DNA sequence. Without even realizing it, changed genes could be carried by anyone and passed on to his children. Consider the scenario in which we have a model that can be implemented forecast which genetic disease will appear in future generations based on both genders' mutations. After extracting the gene, based on what was learnt from the mutations, a forecast will be made to the next generation of that particular genetic mutation condition. as well as the ailment we'll be focusing on. We also want to create a new section that focuses on confirmation of parenthood. Users will enter a whole exomes, and we will ask them if the youngster is their son or not, The following sections go through exactly what the model is and how it works.</p>
+										<p>Some parents suffer from the process of paternity testing when they are being sued for child custody. Proof of parentage is the term for this situation. We want to create a model that takes whole genome/exome or number of alleles entered by the father, mother, son and determines whether or not the son is theirs. A system will help to lessen the time it usually takes for proving the paternity of someone and it can be accessible to everyone.</p>
 										
 									</div>
 									<div class="tab-pane fade" id="tab_c">
@@ -319,7 +318,7 @@ His research interest is in pattern recognition specifically in character recogn
                                 <div class="testimonial clearfix">
                                     <div class="desc">
                                         <h3><i class="fa fa-quote-left"></i> Scenario 1</h3>
-                                        <p class="lead">A new married couple decides that they want to have a child, where they want to know if the new child will have a genetic disease or not, so they started to use the system application, both of them enters their mutated genes, as the system starts to analyze data and sends results whether or not he or she carries a genetic mutation to a specific disease that may be passed down to future generations.</p>
+                                        <p class="lead">The user denies the fatherhood of his child, and his family wants to prove it. Rather than filing a lawsuit, they went to a laboratory and performed a test on specific rs numbers or whole genome/exome sequencing. Then they use our software to enter alleles on the same rs numbers or their entire genomes, and the app verify whether or not the child is blood related or not.</p>
                                     </div>
                                    
                                     <!-- end testi-meta -->
@@ -328,7 +327,7 @@ His research interest is in pattern recognition specifically in character recogn
                                 <div class="testimonial clearfix">
                                     <div class="desc">
                                         <h3><i class="fa fa-quote-left"></i> Scenario 2</h3>
-                                        <p class="lead">The user denies the fatherhood of his child, and his family wants to prove it. Rather than filing a lawsuit, they went to a laboratory and performed a test on specific rs numbers or whole-exome sequencing. Then they use our software to enter alleles on the same rs numbers or their entire exomes, and the app verify whether or not the child is blood related or not.</p>
+                                        <p class="lead">There has been a crime scene, and the criminal blood is found as evidence. They take the criminal's sample blood and run a test for specific rs numbers, they compare it in our system and if their genes match then the criminal is found.</p>
                                     </div>
                                     
                                     <!-- end testi-meta -->
