@@ -2,6 +2,7 @@
 #import modules
 
 from tkinter import *
+import hashlib
 import os
 
 # Designing window for registration
@@ -65,13 +66,16 @@ def login():
 # Implementing event on register button
 
 def register_user():
-
+    #sha256_hash = hashlib.sha256()
     username_info = username.get()
     password_info = password.get()
-
+    #sha256_hash.username_info()
+    #sha256_hash.password_info()
+    
+    hashed_password = hashlib.sha256(password_info.encode('utf-8')).hexdigest()
     file = open(username_info, "w")
     file.write(username_info + "\n")
-    file.write(password_info)
+    file.write(hashed_password)
     file.close()
 
     username_entry.delete(0, END)
@@ -88,10 +92,11 @@ def login_verify():
     password_login_entry.delete(0, END)
 
     list_of_files = os.listdir()
+    hashed_password1 = hashlib.sha256(password1.encode('utf-8')).hexdigest()
     if username1 in list_of_files:
         file1 = open(username1, "r")
         verify = file1.read().splitlines()
-        if password1 in verify:
+        if hashed_password1 in verify:
             login_sucess()
 
         else:
