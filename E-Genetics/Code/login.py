@@ -1,49 +1,53 @@
-
-#import modules
-
-from tkinter import *
+from tkinter import * 
+from tkinter import messagebox
 import hashlib
 import os
+from Models.User import User
+from PIL import ImageTk
+from PIL import Image  
 
-# Designing window for registration
 
+  # Designing window for registration
+def newScreen():
+     import paternity
+     os.system('python3 paternity.py')   
 def register():
     global register_screen
     register_screen = Toplevel(main_screen)
     register_screen.title("Register")
-    register_screen.geometry("300x250")
-
+    register_screen.geometry("%dx%d" % (register_screen.winfo_screenwidth(), register_screen.winfo_screenheight()))
+    Label(register_screen, text="Welcome In Genetics\n(Registration)", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+   
     global username
     global password
     global username_entry
     global password_entry
     username = StringVar()
     password = StringVar()
-
-    Label(register_screen, text="Please enter details below", bg="blue").pack()
-    Label(register_screen, text="").pack()
-    username_lable = Label(register_screen, text="Username * ")
+    Label(register_screen, text="", pady=100).pack()
+    username_lable = Label(register_screen, text="Username", font=("Calibri", 17, 'underline'), padx=5)
     username_lable.pack()
-    username_entry = Entry(register_screen, textvariable=username)
+    username_entry = Entry(register_screen, textvariable=username, width=50)
     username_entry.pack()
-    password_lable = Label(register_screen, text="Password * ")
+    password_lable = Label(register_screen, text="Password", font=("Calibri", 17, 'underline'), padx=5)
     password_lable.pack()
-    password_entry = Entry(register_screen, textvariable=password, show='*')
+    password_entry = Entry(register_screen, textvariable=password, show='*', width=50)
     password_entry.pack()
     Label(register_screen, text="").pack()
-    Button(register_screen, text="Register", width=10, height=1, bg="blue", command = register_user).pack()
-
-
+    btn = Button(register_screen, text="Register", width=10, height=1, bg="black", fg='white', command = register_user, font=("Calibri", 17))
+    btn.configure(padx=100, pady=20)    
+    btn.pack()
 # Designing window for login 
 
 def login():
     global login_screen
     login_screen = Toplevel(main_screen)
     login_screen.title("Login")
-    login_screen.geometry("300x250")
-    Label(login_screen, text="Please enter details below to login").pack()
-    Label(login_screen, text="").pack()
-
+    login_screen.geometry("%dx%d" % (login_screen.winfo_screenwidth(), login_screen.winfo_screenheight()))
+    Label(login_screen, text="Welcome In Genetics\n(Log In)", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+    Label(login_screen, text="", pady=100).pack()
+   
+    
     global username_verify
     global password_verify
 
@@ -53,36 +57,35 @@ def login():
     global username_login_entry
     global password_login_entry
 
-    Label(login_screen, text="Username * ").pack()
-    username_login_entry = Entry(login_screen, textvariable=username_verify)
+    Label(login_screen, text="Username", font=("Calibri", 17, 'underline'), padx=5).pack()
+    username_login_entry = Entry(login_screen, textvariable=username_verify, width=50)
     username_login_entry.pack()
     Label(login_screen, text="").pack()
-    Label(login_screen, text="Password * ").pack()
-    password_login_entry = Entry(login_screen, textvariable=password_verify, show= '*')
+    Label(login_screen, text="Password", font=("Calibri", 17, 'underline'), padx=5).pack()
+    password_login_entry = Entry(login_screen, textvariable=password_verify, show= '*', width=50)
     password_login_entry.pack()
     Label(login_screen, text="").pack()
-    Button(login_screen, text="Login", width=10, height=1, command = login_verify).pack()
-
+    btn = Button(login_screen, text="Login", width=10, height=1, command = login_verify, bg='black', fg='white', font=("Calibri", 17))
+    btn.configure(padx=100, pady=20)    
+    btn.pack()
+   
 # Implementing event on register button
-
+user = User()
+    
 def register_user():
-    #sha256_hash = hashlib.sha256()
     username_info = username.get()
     password_info = password.get()
-    #sha256_hash.username_info()
-    #sha256_hash.password_info()
-    
     hashed_password = hashlib.sha256(password_info.encode('utf-8')).hexdigest()
-    file = open(username_info, "w")
-    file.write(username_info + "\n")
-    file.write(hashed_password)
-    file.close()
-
-    username_entry.delete(0, END)
-    password_entry.delete(0, END)
-
-    Label(register_screen, text="Registration Success", fg="green", font=("calibri", 11)).pack()
-
+    if(username_info == '' or password_info == ''):
+        messagebox.showerror('Error', 'Error: Please Fill all Requirements')
+    else:
+     if(user.readData(username_info, hashed_password)):
+        messagebox.showerror('Error', 'Error: Please Try another user Name or another password')        
+     else:
+        user.InsertData(username_info, hashed_password)
+        username_entry.delete(0, END)
+        password_entry.delete(0, END)
+        register_screen.destroy()
 # Implementing event on login button 
 
 def login_verify():
@@ -93,17 +96,13 @@ def login_verify():
 
     list_of_files = os.listdir()
     hashed_password1 = hashlib.sha256(password1.encode('utf-8')).hexdigest()
-    if username1 in list_of_files:
-        file1 = open(username1, "r")
-        verify = file1.read().splitlines()
-        if hashed_password1 in verify:
-            login_sucess()
-
-        else:
-            password_not_recognised()
-
+    if(user.readData(username1, hashed_password1)):
+        main_screen.destroy()
+        newScreen()
+        
     else:
-        user_not_found()
+        messagebox.showerror('Error', 'Error: Data Is Not Exist')   
+    
 
 # Designing popup for login success
 
@@ -154,13 +153,18 @@ def delete_user_not_found_screen():
 def main_account_screen():
     global main_screen
     main_screen = Tk()
-    main_screen.geometry("300x250")
+    main_screen.geometry("%dx%d" % (main_screen.winfo_screenwidth(), main_screen.winfo_screenheight()))
     main_screen.title("Account Login")
-    Label(text="Welcome", bg="blue", width="300", height="2", font=("Calibri", 13)).pack()
+    Label(text="Welcome In Genetics", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
     Label(text="").pack()
-    Button(text="Login", height="2", width="30", command = login).pack()
-    Label(text="").pack()
-    Button(text="Register", height="2", width="30", command=register).pack()
+    load = Image.open("Images/family-law.png")
+    render = ImageTk.PhotoImage(load) 
+    img = Label(image=render)
+    img.image = render
+    img.place(x=700, y=200)
+  
+    Button(text="Login", height="2", width="30", command = login, background='darkred',fg='white').place(x=840, y=700)
+    Button(text="Register", height="2", width="30", command=register, background='darkgreen',fg='white').place(x=840, y=800)
 
     main_screen.mainloop()
 

@@ -1,23 +1,19 @@
-
-from cgitb import text
-from multiprocessing.sharedctypes import Value
-from os import chmod
-from pickle import FALSE
-from re import L
-from turtle import color
 import pandas as pd
-from paternityClass import paternityTest
-from tkinter import Canvas, Tk, Label, Button, Text, END, Toplevel, Label
+from Models.User import User
+from tkinter import Tk, Label, Button, Text, END, Toplevel, Label
 from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
 
+def destroyScreens():
+  root.destroy()
      
 def open_file():
    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
    if file is not None: 
         data = pd.read_csv(file.name)
-        obj = paternityTest(data['father'], data['mother'], data['child1'], data['combine'], data['chromosome'])
+        obj = User()
+        obj.Test(data['father'], data['mother'], data['child1'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''
         rsSimilar = obj.getRsNumberSimilar()
         '''Father Rs Numbers that not Matched with the rule'''
@@ -64,6 +60,7 @@ def open_file():
         viewScreen.title("Report")
         viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
         viewScreen.config(background='black')
+ 
 
         T = Text(viewScreen, height=root.winfo_screenheight(), width=root.winfo_screenwidth(), bg='black', fg='white', font='Helvetica 18 bold', pady=70)
         T.tag_configure("tag_name", justify='center')
@@ -107,6 +104,10 @@ def open_file():
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
         T.pack(pady=50)
+        #btnResults = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
+        #btnResults.config(padx=100, pady=20)
+        #btnResults.place(x= 1500, y=760)
+
         print('The Number of rsNumbers', len(rsSimilar)+ len(rsFather)+len(rsMother)-4)
         print("\nThe Number of Chromosomes fit the rule: ", len(chroFather)+ len(chroMother))
         print("\nFather Chromosomes: ", chroFather[0:5])
@@ -140,7 +141,7 @@ if __name__ == "__main__":
   root.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight()))
   root.config(bg='black')
   root.eval('tk::PlaceWindow . center')
-  load = Image.open("family-law.png")
+  load = Image.open("Images/family-law.png")
   render = ImageTk.PhotoImage(load) 
   img = Label(image=render)
   img.image = render
@@ -149,6 +150,10 @@ if __name__ == "__main__":
   btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='white',fg='black')
   btn.config(padx=100, pady=20)
   btn.place(x= 830, y=720)
+  btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
+  btnDestroy.config(padx=100, pady=20)
+  btnDestroy.place(x= 1500, y=760)
+
   root.mainloop()  
   
 
