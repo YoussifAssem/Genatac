@@ -1,35 +1,36 @@
-import mysql.connector
 from .paternityTest import paternityTest
+import firebase_admin
+from firebase_admin import db
+from firebase_admin import credentials
+
+
 class User:
     pT = object()
+    def __init__(self):
+      try:
+         cred = credentials.Certificate("paternitytest-7cb8b-firebase-adminsdk-my5mh-786350297b.json")
+         firebase_admin.initialize_app(cred,  {'databaseURL': 'https://paternitytest-7cb8b-default-rtdb.firebaseio.com/'})
+      except:
+        print('Error')
     def Test(self, father, mother, child, rs, chromosome):
         self.pT = paternityTest(father, mother, child, rs, chromosome)
     
     def InsertData(self, username_info, hashed_password):
-     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="paternityTest")
-     myCursor = conn.cursor()
-     myCursor.execute("INSERT INTO Users (userName, password) VALUES (%s, %s)", (str(username_info), str(hashed_password)))
-     conn.commit()
-     conn.close()
-    
+       ref = db.reference('/')
+       ref.push(
+        {
+         'userName': username_info,
+         'password': hashed_password
+         }
+      
+     )
+   
     def readData(self, userName, password):
-      conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="paternityTest")
-      myCursor = conn.cursor()
-      myCursor.execute("SELECT * FROM Users")
-      records = myCursor.fetchall()
-      for f in records:
-        if(userName in f and password in f):
+      ref = db.reference('/')
+      snapShot = ref.get()
+      for key, val in snapShot.items():
+        if(val.get('userName') == userName and val.get('password') == password):
             return True
-      conn.commit()
-      conn.close()
 
 
     '''Similar rs numbers fit the rule'''
