@@ -8,7 +8,7 @@ class User:
     pT = object()
     def __init__(self):
       try:
-         cred = credentials.Certificate("paternitytest-7cb8b-firebase-adminsdk-my5mh-786350297b.json")
+         cred = credentials.Certificate("../../../paternitytest-7cb8b-firebase-adminsdk-my5mh-786350297b.json")
          firebase_admin.initialize_app(cred,  {'databaseURL': 'https://paternitytest-7cb8b-default-rtdb.firebaseio.com/'})
       except:
         print('Error')
@@ -16,7 +16,7 @@ class User:
         self.pT = paternityTest(father, mother, child, rs, chromosome)
     
     def InsertData(self, username_info, hashed_password):
-       ref = db.reference('/')
+       ref = db.reference('/Users')
        ref.push(
         {
          'userName': username_info,
@@ -24,9 +24,24 @@ class User:
          }
       
      )
-   
+     
+    def saveResults(self, ID, probFather, probNotFather):
+        ref = db.reference('/Results')
+        ref.push(
+          {
+            'ID':ID,
+            'probabilityFather': probFather,
+            'probabilityNotFather':probNotFather
+          }
+        )
+    def readResults(self, ID):
+       ref = db.reference('/Results')
+       snapShot = ref.get()
+       for key, val in snapShot.items():
+         if(val.get('ID') == ID):
+           return True 
     def readData(self, userName, password):
-      ref = db.reference('/')
+      ref = db.reference('/Users')
       snapShot = ref.get()
       for key, val in snapShot.items():
         if(val.get('userName') == userName and val.get('password') == password):

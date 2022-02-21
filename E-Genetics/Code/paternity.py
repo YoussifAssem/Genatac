@@ -1,18 +1,43 @@
+from sys import maxsize
 import pandas as pd
 from Models.User import User
-from tkinter import Tk, Label, Button, Text, END, Toplevel, Label
+from tkinter import Y, StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, messagebox
 from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
-
+import hashlib
+      
 def destroyScreens():
   root.destroy()
+
+
+
+def saveResults():
+  ID = nationalID.get()
+  if(ID == ''):
+    messagebox.showerror('Error', 'Please, Enter the National ID of Father')
+    return
+  if(len(ID) == 14):
+    hashed_ID = hashlib.sha256(ID.encode('utf-8')).hexdigest()
+    msg = messagebox.askquestion("Question ?!", "Are you sure?")
+    if msg == 'yes':
+      if(obj.readResults(hashed_ID)):
+        messagebox.showerror('Error', 'This National ID is already exist')
+        return
+      else:
+        messagebox.showinfo('Done', 'Data Saved Successfully')
+        obj.saveResults(hashed_ID, obj.calculateProbability()[0], obj.calculateProbability()[1])
+        return
+    else:
+      messagebox.showwarning('Warning', 'Data Is Not Saved')
+      return 
+  if(len(ID) != 14):
+    messagebox.showerror('Error', 'Length of National ID is Not True')
      
 def open_file():
    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
    if file is not None: 
         data = pd.read_csv(file.name)
-        obj = User()
         obj.Test(data['father'], data['mother'], data['child1'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''
         rsSimilar = obj.getRsNumberSimilar()
@@ -55,17 +80,24 @@ def open_file():
         chroNotMother = list(dict.fromkeys(chroNotMother))
       
        
-         
         viewScreen = Toplevel(root)
         viewScreen.title("Report")
         viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
         viewScreen.config(background='black')
- 
-
-        T = Text(viewScreen, height=root.winfo_screenheight(), width=root.winfo_screenwidth(), bg='black', fg='white', font='Helvetica 18 bold', pady=70)
+        global nationalID
+        nationalID = StringVar()
+        Label(viewScreen,text='Please, Enter Father National ID', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=0)
+        ID = Entry(viewScreen, textvariable=nationalID, width=50, borderwidth=20)
+        ID.place(x=100, y=50)
+        btnSave = Button(viewScreen, text= 'Save Results', command = saveResults,  background='darkgreen',fg='white')
+        btnSave.config(padx=100, pady=20)
+        btnSave.place(x=500, y=50)
+        
+        T = Text(viewScreen, height=30, width=100, bg='white', fg='white', font='Helvetica 18 bold')
         T.tag_configure("tag_name", justify='center')
         T.tag_config('warningColor', foreground='red')
         T.tag_config('safeColor', foreground='green')
+        T.tag_config('probColor', foreground='black')
        
         
         T.insert(END, "The Number of rsNumbers: {}".format(len(rsSimilar)+ len(rsFather)+len(rsMother)), 'warningColor')
@@ -99,11 +131,13 @@ def open_file():
         T.insert(END, "\nDf Mother: {}".format(mother[0:5]), 'warningColor')
         T.insert(END, "\nDf Child: {}".format(chMother[0:5]), 'warningColor')
         T.insert(END, "\n----------------------------------------")
-        T.insert(END, "\nSo, The Probability this may be the Fathe: {}".format(obj.calculateProbability()[0]))
-        T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]))
+        T.insert(END, "\nSo, The Probability this may be the Fathe: {}".format(obj.calculateProbability()[0]), 'probColor')
+        T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]), 'probColor')
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
-        T.pack(pady=50)
+        T.pack(pady=140)
+        
+        
         #btnResults = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
         #btnResults.config(padx=100, pady=20)
         #btnResults.place(x= 1500, y=760)
@@ -136,6 +170,7 @@ def open_file():
         print("So, The Probability this may Not be the Father: ", obj.calculateProbability()[1])
  
 if __name__ == "__main__":
+  obj = User()
   root = Tk(className='Python Examples - Window Color')  
   root.title('paternityTest')
   root.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight()))
