@@ -15,7 +15,7 @@ class User:
     def Test(self, father, mother, child, rs, chromosome):
         self.pT = paternityTest(father, mother, child, rs, chromosome)
     
-    def InsertData(self, username_info, hashed_password):
+    def Registration(self, username_info, hashed_password):
        ref = db.reference('/Users')
        ref.push(
         {
@@ -34,13 +34,13 @@ class User:
             'probabilityNotFather':probNotFather
           }
         )
-    def readResults(self, ID):
+    def checkResults(self, ID):
        ref = db.reference('/Results')
        snapShot = ref.get()
        for key, val in snapShot.items():
          if(val.get('ID') == ID):
            return True 
-    def readData(self, userName, password):
+    def logIn(self, userName, password):
       ref = db.reference('/Users')
       snapShot = ref.get()
       for key, val in snapShot.items():

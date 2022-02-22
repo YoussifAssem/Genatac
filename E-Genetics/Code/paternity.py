@@ -1,4 +1,3 @@
-from sys import maxsize
 import pandas as pd
 from Models.User import User
 from tkinter import Y, StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, messagebox
@@ -21,7 +20,7 @@ def saveResults():
     hashed_ID = hashlib.sha256(ID.encode('utf-8')).hexdigest()
     msg = messagebox.askquestion("Question ?!", "Are you sure?")
     if msg == 'yes':
-      if(obj.readResults(hashed_ID)):
+      if(obj.checkResults(hashed_ID)):
         messagebox.showerror('Error', 'This National ID is already exist')
         return
       else:

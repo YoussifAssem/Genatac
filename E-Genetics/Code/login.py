@@ -79,10 +79,10 @@ def register_user():
     if(username_info == '' or password_info == ''):
         messagebox.showerror('Error', 'Error: Please Fill all Requirements')
     else:
-     if(user.readData(username_info, hashed_password)):
+     if(user.logIn(username_info, hashed_password)):
         messagebox.showerror('Error', 'Error: Please Try another user Name or another password')        
      else:
-        user.InsertData(username_info, hashed_password)
+        user.Registration(username_info, hashed_password)
         username_entry.delete(0, END)
         password_entry.delete(0, END)
         register_screen.destroy()
@@ -96,7 +96,7 @@ def login_verify():
 
     list_of_files = os.listdir()
     hashed_password1 = hashlib.sha256(password1.encode('utf-8')).hexdigest()
-    if(user.readData(username1, hashed_password1)):
+    if(user.logIn(username1, hashed_password1)):
         main_screen.destroy()
         newScreen()
         
