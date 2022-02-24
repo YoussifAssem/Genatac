@@ -82,10 +82,12 @@ def register_user():
      if(user.logIn(username_info, hashed_password)):
         messagebox.showerror('Error', 'Error: Please Try another user Name or another password')        
      else:
-        user.Registration(username_info, hashed_password)
-        username_entry.delete(0, END)
-        password_entry.delete(0, END)
-        register_screen.destroy()
+        if(user.Registration(username_info, hashed_password)):
+            username_entry.delete(0, END)
+            password_entry.delete(0, END)
+            register_screen.destroy()
+        else:
+            messagebox.showerror('Error', 'Please, Try Another User Name')
 # Implementing event on login button 
 
 def login_verify():

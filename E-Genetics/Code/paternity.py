@@ -1,3 +1,4 @@
+from re import X
 import pandas as pd
 from Models.User import User
 from tkinter import Y, StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, messagebox
@@ -13,20 +14,30 @@ def destroyScreens():
 
 def saveResults():
   ID = nationalID.get()
-  if(ID == ''):
+  case = caseNumber.get()
+  if(case == '' and ID == ''):
+    messagebox.showerror('Error', 'Please, Enter the Requirements Data')
+    return
+  elif(ID == ''):
     messagebox.showerror('Error', 'Please, Enter the National ID of Father')
     return
-  if(len(ID) == 14):
+  elif(case == ''):
+    messagebox.showerror('Error', 'Please, Enter the Case Number')
+    return
+ 
+    
+  if(len(ID) == 14 and caseNumber != ''):
     hashed_ID = hashlib.sha256(ID.encode('utf-8')).hexdigest()
+    hashed_case = hashlib.sha256(case.encode('utf-8')).hexdigest()
     msg = messagebox.askquestion("Question ?!", "Are you sure?")
     if msg == 'yes':
-      if(obj.checkResults(hashed_ID)):
-        messagebox.showerror('Error', 'This National ID is already exist')
+      if(obj.checkResults(hashed_ID, hashed_case)):
+        messagebox.showerror('Error', 'This National ID OR case Number is already exist')
         return
       else:
-        messagebox.showinfo('Done', 'Data Saved Successfully')
-        obj.saveResults(hashed_ID, obj.calculateProbability()[0], obj.calculateProbability()[1])
-        return
+       obj.saveResults(hashed_ID, obj.calculateProbability()[0], obj.calculateProbability()[1], hashed_case)
+       messagebox.showinfo('Done', 'Data Saved Successfully')
+       return
     else:
       messagebox.showwarning('Warning', 'Data Is Not Saved')
       return 
@@ -83,16 +94,22 @@ def open_file():
         viewScreen.title("Report")
         viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
         viewScreen.config(background='black')
-        global nationalID
+        global nationalID, caseNumber
         nationalID = StringVar()
+        caseNumber = StringVar()
         Label(viewScreen,text='Please, Enter Father National ID', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=0)
         ID = Entry(viewScreen, textvariable=nationalID, width=50, borderwidth=20)
-        ID.place(x=100, y=50)
+        ID.place(x=0, y=50)
+        
+        Label(viewScreen,text='Please, Enter Case Number', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=140)
+        case = Entry(viewScreen, textvariable=caseNumber, width=50, borderwidth=20)
+        case.place(x=0, y=200)
+        
         btnSave = Button(viewScreen, text= 'Save Results', command = saveResults,  background='darkgreen',fg='white')
         btnSave.config(padx=100, pady=20)
-        btnSave.place(x=500, y=50)
+        btnSave.place(x=0, y=300)
         
-        T = Text(viewScreen, height=30, width=100, bg='white', fg='white', font='Helvetica 18 bold')
+        T = Text(viewScreen, height=400, width=200, bg='white', fg='white', font='Helvetica 18 bold')
         T.tag_configure("tag_name", justify='center')
         T.tag_config('warningColor', foreground='red')
         T.tag_config('safeColor', foreground='green')
@@ -134,7 +151,7 @@ def open_file():
         T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]), 'probColor')
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
-        T.pack(pady=140)
+        T.pack(pady=200, padx=500)
         
         
         #btnResults = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')

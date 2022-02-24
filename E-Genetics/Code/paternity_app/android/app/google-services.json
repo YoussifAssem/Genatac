@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "86992490246",
+    "firebase_url": "https://paternitytest-7cb8b-default-rtdb.firebaseio.com",
+    "project_id": "paternitytest-7cb8b",
+    "storage_bucket": "paternitytest-7cb8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86992490246:android:a8b07e2c62844872d1d887",
+        "android_client_info": {
+          "package_name": "com.example.paternity_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86992490246-kvgp6vfrbf5n522ubp8shepbu2lovddf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnRtTfAuCUUic_3Lww_BDU7wKjjuXG45w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86992490246-kvgp6vfrbf5n522ubp8shepbu2lovddf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
