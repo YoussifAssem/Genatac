@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paternity_app/Models/user.dart';
 import 'package:paternity_app/Screens/login_screen.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -13,7 +14,7 @@ class SignUp extends StatefulWidget {
 class _SignUp extends State<SignUp> {
   // ignore: unused_field
 
-  //User user = User();
+  User user = User();
   final name = TextEditingController();
   final e = TextEditingController();
   final p = TextEditingController();
@@ -24,7 +25,7 @@ class _SignUp extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.blueGrey[900],
         appBar: AppBar(
           backgroundColor: Colors.blue[900],
           title: const Text(
@@ -173,19 +174,23 @@ class _SignUp extends State<SignUp> {
                         }
                       else
                         {
-                          /* if (
-                            await user.signUp(
+                          if (await user.signUp(
                                   name: name.text,
                                   email: e.text,
-                                  password: p.text) =='Error'){
+                                  password: p.text) ==
+                              'Error')
+                            {
                               text = 'Error in Data',
                               showAlertDialog(context),
-                            }*/
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => logIn()),
-                          )
+                            }
+                          else
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => logIn()),
+                              )
+                            }
                         }
                     },
                   ),

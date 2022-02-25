@@ -1,7 +1,8 @@
 // ignore_for_file: camel_case_types, use_key_in_widget_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:paternity_app/Models/user.dart';
+import 'package:paternity_app/Screens/menu.dart';
 import 'package:paternity_app/Screens/signup_screen.dart';
 
 class logIn extends StatefulWidget {
@@ -14,14 +15,14 @@ class logIn extends StatefulWidget {
 class _logIn extends State<logIn> {
   final email = TextEditingController();
   final password = TextEditingController();
-  //User user = User();
+  User user = User();
   late String text;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.blueGrey[900],
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
@@ -127,23 +128,18 @@ class _logIn extends State<logIn> {
                       } else if (!email.text.contains('@')) {
                         text = 'Email format is not true';
                         showAlertDialog(context);
-                      }
-                      /*
-                      else {
+                      } else {
                         if (await user.login(email.text, password.text) ==
                             'Error') {
                           text = 'Error, Email or Password is incorrect';
                           showAlertDialog(context);
                         } else {
-                          /*
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => Menu()),
                           );
-                          */
                         }
                       }
-                      */
                     },
                   ),
                 ))
