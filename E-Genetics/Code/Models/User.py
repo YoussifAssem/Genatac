@@ -7,6 +7,8 @@ from firebase_admin import credentials
 
 class User:
     __pT = object()
+
+
     def __init__(self):
       try:
          cred = credentials.Certificate("../../../paternitytest-7cb8b-firebase-adminsdk-my5mh-786350297b.json")
@@ -44,9 +46,7 @@ class User:
        ref = db.reference('/Results')
        snapShot = ref.get()
        for key, val in snapShot.items():
-         if(val.get('ID') == ID):
-           return True 
-         if(val.get('caseNumber') == caseNumber):
+         if(val.get('ID') == ID  and val.get('caseNumber') == caseNumber):
            return True  
     def logIn(self, userName, password):
       ref = db.reference('/Users')

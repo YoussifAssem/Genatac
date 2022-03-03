@@ -48,7 +48,7 @@ def open_file():
    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
    if file is not None: 
         data = pd.read_csv(file.name)
-        obj.Test(data['father'], data['mother'], data['child1'], data['combine'], data['chromosome'])
+        obj.Test(data['father'], data['mother'], data['child3'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''
         rsSimilar = obj.getRsNumberSimilar()
         '''Father Rs Numbers that not Matched with the rule'''
