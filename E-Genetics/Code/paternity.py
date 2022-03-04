@@ -6,7 +6,7 @@ from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
 import hashlib
-      
+import sys      
 def destroyScreens():
   root.destroy()
 
@@ -31,11 +31,10 @@ def saveResults():
     hashed_case = hashlib.sha256(case.encode('utf-8')).hexdigest()
     msg = messagebox.askquestion("Question ?!", "Are you sure?")
     if msg == 'yes':
-      if(obj.checkResults(hashed_ID, hashed_case)):
+      if(obj.saveResults(hashed_ID, obj.calculateProbability()[0], obj.calculateProbability()[1], hashed_case, sys.argv[1].replace(" ", ''))):
         messagebox.showerror('Error', 'This National ID OR case Number is already exist')
         return
       else:
-       obj.saveResults(hashed_ID, obj.calculateProbability()[0], obj.calculateProbability()[1], hashed_case)
        messagebox.showinfo('Done', 'Data Saved Successfully')
        return
     else:
@@ -46,7 +45,7 @@ def saveResults():
      
 def open_file():
    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
-   if file is not None: 
+   if file is not None:
         data = pd.read_csv(file.name)
         obj.Test(data['father'], data['mother'], data['child3'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''

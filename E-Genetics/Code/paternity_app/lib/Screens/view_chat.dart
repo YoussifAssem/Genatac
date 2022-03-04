@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
+import 'package:paternity_app/Screens/chat_screen.dart';
 
 class viewChat extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class viewChat extends StatefulWidget {
 class _viewChat extends State<viewChat> {
   final search = TextEditingController();
   User user = User();
+  Chat c = Chat('h');
   @override
   Widget build(BuildContext context) {
     return Scaffold(

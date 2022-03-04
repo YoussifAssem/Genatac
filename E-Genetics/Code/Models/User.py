@@ -1,59 +1,72 @@
-from tracemalloc import Snapshot
 from .paternityTest import paternityTest
 import firebase_admin
-from firebase_admin import db
-from firebase_admin import credentials
+from firebase_admin import credentials, firestore
 
 
 class User:
     __pT = object()
-
+    __db = object()
 
     def __init__(self):
       try:
-         cred = credentials.Certificate("../../../paternitytest-7cb8b-firebase-adminsdk-my5mh-786350297b.json")
-         firebase_admin.initialize_app(cred,  {'databaseURL': 'https://paternitytest-7cb8b-default-rtdb.firebaseio.com/'})
+          cred = credentials.Certificate("../../../fireStore.json")
+          firebase_admin.initialize_app(cred)
+          self.connection()  
       except:
         print('Error')
+    def connection(self):
+        self.__db = firestore.client()
+        
     def Test(self, father, mother, child, rs, chromosome):
         self.__pT = paternityTest(father, mother, child, rs, chromosome)
     
     def Registration(self, username_info, hashed_password):
-       ref = db.reference('/Users')
-       snapShot = ref.get()
-       for key, val in snapShot.items():
-          if(val.get('userName') == username_info):
-            return False
-          else:  
-               ref.push({
-                'userName': username_info,
-                'password': hashed_password
-                })
-               return True  
-   
-     
-    def saveResults(self, ID, probFather, probNotFather, caseNumber):
-        ref = db.reference('/Results')
-        ref.push(
-          {
+        ref = self.__db.collection('adminUsers').document(username_info).get()
+        if(ref.exists):
+            return True 
+        else:
+              print('In Else')  
+              self.__db.collection('adminUsers').document(username_info).set({
+                 'userName': username_info,
+                 'password': hashed_password
+               })
+              return False 
+    
+    def logIn(self, userName, password):
+     if(self.__checkUser(userName=userName, password=password)):
+       return True
+     else:
+       return False   
+
+    def __checkUser(self, userName, password):
+        docs = self.__db.collection('adminUsers').document(userName)
+        val = docs.get().to_dict()
+        if(docs.get().exists):  
+         if(val['userName'] == userName and val['password'] == password):
+            return True
+         else:
+          return False
+        else:
+          return False  
+
+    def saveResults(self, ID, probFather, probNotFather, caseNumber, userName):
+        if(self.__checkResults(ID, userName)):
+          return True
+        else:  
+          ref = self.__db.collection('adminUsers').document(userName).collection('Results').document(ID)
+          ref.set({
             'ID':ID,
             'caseNumber':caseNumber,
             'probabilityFather': probFather,
             'probabilityNotFather':probNotFather
-          }
-        )
-    def checkResults(self, ID, caseNumber):
-       ref = db.reference('/Results')
-       snapShot = ref.get()
-       for key, val in snapShot.items():
-         if(val.get('ID') == ID  and val.get('caseNumber') == caseNumber):
-           return True  
-    def logIn(self, userName, password):
-      ref = db.reference('/Users')
-      snapShot = ref.get()
-      for key, val in snapShot.items():
-        if(val.get('userName') == userName and val.get('password') == password):
+          })
+          return False
+    def __checkResults(self, ID, userName):
+       ref = self.__db.collection('adminUsers').document(userName).collection('Results').document(ID)
+       if(ref.get().exists):
             return True
+       else:
+         return False 
 
 
     '''Similar rs numbers fit the rule'''

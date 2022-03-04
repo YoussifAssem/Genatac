@@ -8,9 +8,8 @@ from PIL import Image
 
 
   # Designing window for registration
-def newScreen():
-     import paternity
-     os.system('python3 paternity.py')   
+def newScreen(name):
+        os.system('python3 paternity.py ' + name)   
 def register():
     global register_screen
     register_screen = Toplevel(main_screen)
@@ -79,15 +78,13 @@ def register_user():
     if(username_info == '' or password_info == ''):
         messagebox.showerror('Error', 'Error: Please Fill all Requirements')
     else:
-     if(user.logIn(username_info, hashed_password)):
+     if(user.Registration(username_info, hashed_password)):
         messagebox.showerror('Error', 'Error: Please Try another user Name or another password')        
      else:
-        if(user.Registration(username_info, hashed_password)):
             username_entry.delete(0, END)
             password_entry.delete(0, END)
             register_screen.destroy()
-        else:
-            messagebox.showerror('Error', 'Please, Try Another User Name')
+        
 # Implementing event on login button 
 
 def login_verify():
@@ -100,7 +97,7 @@ def login_verify():
     hashed_password1 = hashlib.sha256(password1.encode('utf-8')).hexdigest()
     if(user.logIn(username1, hashed_password1)):
         main_screen.destroy()
-        newScreen()
+        newScreen(username1)
         
     else:
         messagebox.showerror('Error', 'Error: Data Is Not Exist')   
