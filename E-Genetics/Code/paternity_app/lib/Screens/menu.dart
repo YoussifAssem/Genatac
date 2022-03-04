@@ -1,10 +1,10 @@
 // ignore_for_file: unused_field, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:paternity_app/Models/user.dart';
 import 'package:paternity_app/Screens/editprofile.dart';
 import 'package:paternity_app/Screens/home_screen.dart';
 import 'package:paternity_app/Screens/login_screen.dart';
+import 'package:paternity_app/Screens/results_screen.dart';
 import 'package:paternity_app/Screens/view_chat.dart';
 
 class Menu extends StatefulWidget {
@@ -19,6 +19,7 @@ class _Menu extends State<Menu> {
   final List<Widget> _widgetOptions = <Widget>[
     homeScreen(),
     viewChat(),
+    Results(),
     EditProfilePage(),
     logIn(),
   ];
@@ -26,7 +27,7 @@ class _Menu extends State<Menu> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex == 3) {
+      if (_selectedIndex == 4) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => logIn()));
       }
@@ -50,6 +51,11 @@ class _Menu extends State<Menu> {
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
+            backgroundColor: Colors.transparent,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.grid_view),
+            label: 'Results',
             backgroundColor: Colors.transparent,
           ),
           BottomNavigationBarItem(

@@ -35,6 +35,7 @@ class userServices {
         return e.message;
       }
     }
+    return null;
   }
 
   String getEmail() {
@@ -47,6 +48,7 @@ class userServices {
 
   Future<String?> signOut() async {
     await _auth.signOut();
+    return null;
   }
 
   Future<String?> logIn(String email, String password) async {
@@ -58,21 +60,28 @@ class userServices {
     }
   }
 
-/*
-  Future<List?> getUser() async {
-    DocumentReference ref = _user.doc(_auth.currentUser!.uid);
-    FirebaseFirestore.instance.runTransaction((transaction) async {
-      DocumentSnapshot snapShot = await transaction.get(ref);
-      List<String> u = [];
-      if (snapShot.exists) {
-        u.add(snapShot.get('name'));
-        u.add(snapShot.get('phoneNumber'));
-        print(u);
-        return u;
-      }
-    });
+  Future<String?> sendMessage(
+      {required String receiver, required String message}) async {
+    try {
+      DocumentReference ref =
+          FirebaseFirestore.instance.collection('Chatting').doc();
+      FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot snapShot = await transaction.get(ref);
+        if (!snapShot.exists) {
+          ref.set({
+            'Sender': _auth.currentUser!.email,
+            'Receiver': receiver,
+            'Message': message
+          });
+          return 'Done';
+        }
+      });
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+    return null;
   }
-*/
+
   Future<Object?> editProfile(
       {required String email, required String password}) async {
     try {
@@ -93,5 +102,6 @@ class userServices {
     } catch (e) {
       return e;
     }
+    return null;
   }
 }

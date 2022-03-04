@@ -33,6 +33,7 @@ class User {
 
   Future<String?> signOut() async {
     await uS.signOut();
+    return null;
   }
 
   login(String email, String password) async {
@@ -73,6 +74,13 @@ class User {
   Future<Map<String, dynamic>?> editProfile(
       {required String e, required String password}) async {
     await uS.editProfile(email: e, password: password);
+    return null;
+  }
+
+  Future<String?> sendMessage(
+      {required String receiver, required String message}) async {
+    await uS.sendMessage(receiver: receiver, message: message);
+    return null;
   }
 
   getEmail() {
