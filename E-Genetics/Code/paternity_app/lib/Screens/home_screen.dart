@@ -36,6 +36,15 @@ class _homeScreen extends State<homeScreen> {
             )
           ],
         ),
-        body: const Text('Welcome'));
+        body: const Center(
+          child: Text(
+            'Welcome In Paternity Test \n \t\t\t\t\t\t\t\t\t\t\t\t\t(Genetics)',
+            style: TextStyle(
+                fontSize: 30,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+          ),
+        ));
   }
 }

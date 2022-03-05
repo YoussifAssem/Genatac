@@ -9,7 +9,11 @@ import hashlib
 import sys      
 def destroyScreens():
   root.destroy()
-
+def chatScreen():
+    viewScreen = Toplevel(root)
+    viewScreen.title("Chatting")
+    viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
+    viewScreen.config(background='black')
 
 
 def saveResults():
@@ -47,7 +51,7 @@ def open_file():
    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
    if file is not None:
         data = pd.read_csv(file.name)
-        obj.Test(data['father'], data['mother'], data['child3'], data['combine'], data['chromosome'])
+        obj.Test(data['father'], data['mother'], data['child2'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''
         rsSimilar = obj.getRsNumberSimilar()
         '''Father Rs Numbers that not Matched with the rule'''
@@ -183,7 +187,7 @@ def open_file():
         print("So, The Probability this may be the Father: ", obj.calculateProbability()[0])
         '''Returns the probability this may not be the father'''
         print("So, The Probability this may Not be the Father: ", obj.calculateProbability()[1])
- 
+
 if __name__ == "__main__":
   obj = User()
   root = Tk(className='Python Examples - Window Color')  
@@ -196,12 +200,16 @@ if __name__ == "__main__":
   img = Label(image=render)
   img.image = render
   Label(text='Welcome In Genetics', bg='black', fg='white', font='Helvetica 20 bold').place(x=820, y=210)
+  Label(text='Welcome ' + sys.argv[1].replace(" ", ''), bg='black', fg='white', font='Helvetica 20 bold').place(x=860, y=250)
   img.place(x=700, y=200)
   btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='white',fg='black')
   btn.config(padx=100, pady=20)
   btn.place(x= 830, y=720)
+  btnChat = Button(root, text= 'view Messages',  command= chatScreen, background='white',fg='black')
+  btnChat.config(padx=75, pady=20)
+  btnChat.place(x= 830, y=820)
   btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
-  btnDestroy.config(padx=100, pady=20)
+  btnDestroy.config(padx=100, pady=30)
   btnDestroy.place(x= 1500, y=760)
 
   root.mainloop()  
