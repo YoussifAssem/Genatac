@@ -62,7 +62,7 @@ class _viewChat extends State<viewChat> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ChatScreen()));
+                              builder: (context) => Chat(doc['userName'])));
                     },
                     title: Text(
                       doc['userName'].toString(),
