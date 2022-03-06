@@ -1,8 +1,9 @@
+from xmlrpc.client import DateTime
 from .paternityTest import paternityTest
 import firebase_admin
 from firebase_admin import credentials, firestore
-
-
+from datetime import datetime
+import sys
 class User:
     __pT = object()
     __db = object()
@@ -19,7 +20,41 @@ class User:
         
     def Test(self, father, mother, child, rs, chromosome):
         self.__pT = paternityTest(father, mother, child, rs, chromosome)
+   
+   
+    def sendMessage(self, Sender, Receiver, Message):
+      self.__db.collection('Chatting').add({
+        'Sender': Sender,
+        'Receiver': Receiver,
+        'Message': Message,
+        'Time': datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+      })
     
+    def getSenders(self):
+      ref = self.__db.collection('Chatting').stream()
+      li = []
+      for doc in ref:
+        if(doc.to_dict()['Receiver'] == sys.argv[1].replace(" ", "")):
+          li.append(doc.to_dict()['Sender'])
+      li = list(dict.fromkeys(li))
+      return li
+    
+    
+    def getSenderMessages(self, sender, receiver):
+      ref = self.__db.collection('Chatting').stream()
+      li = []
+      for doc in ref:
+          if (doc.to_dict()['Sender'] == sender and doc.to_dict()['Receiver'] == receiver):
+            li.append(doc.to_dict()['Message'])
+      return li
+    
+    def getReceiverMessages(self, receiver, sender):
+      ref = self.__db.collection('Chatting').stream()
+      li = []
+      for doc in ref:
+          if (doc.to_dict()['Sender'] == receiver and doc.to_dict()['Receiver'] == sender):
+            li.append(doc.to_dict()['Message'])
+      return li    
     def Registration(self, username_info, hashed_password):
         ref = self.__db.collection('adminUsers').document(username_info).get()
         if(ref.exists):

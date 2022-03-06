@@ -1,4 +1,6 @@
 from re import X
+from matplotlib.pyplot import text
+from numpy import insert
 import pandas as pd
 from Models.User import User
 from tkinter import Y, StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, messagebox
@@ -6,16 +8,69 @@ from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
 import hashlib
-import sys      
+import sys  
+
 def destroyScreens():
   root.destroy()
-def chatScreen():
+
+
+def chatScreen(Sender):
     viewScreen = Toplevel(root)
     viewScreen.title("Chatting")
     viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
     viewScreen.config(background='black')
+    global message
+    message = StringVar()
+    Label(viewScreen,text='Please, Type Message Here \t' + Sender, font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=800)
+    send = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
+    send.insert(END, '\tSender Messages')
+    for i in  obj.getSenderMessages(Sender, sys.argv[1].replace(" ","")):
+      send.insert(END, '\n' + i)
+      send.tag_configure("tag_name", justify='center')
+    send.tag_configure("tag_name", justify='center')
+    send.config(state='disabled')
+    send.place(x=50,y=40)
+    receive = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
+    receive.insert(END, '\tReceiver Messages')
+    for i in  obj.getReceiverMessages(sys.argv[1].replace(" ",""), Sender):
+      receive.insert(END, '\n' + i)
+     
+    receive.tag_configure("tag_name", justify='center')
+    receive.config(state='disabled')
+    receive.place(x=1030,y=40)
+   
+    me = Text(viewScreen, height=100, width=80, bg='white', fg='black', font='Helvetica 18 bold')
+    me.place(x=0, y=900)
+    btn = Button(viewScreen, text= 'Send Message', command= lambda: runChat(Sender, me.get("1.0","end-1c"))
+    ,background='darkred',fg='white')
+    btn.config(padx=100, pady=30)
+    btn.place(x= 1300, y=960)
+   
+def runChat(Sender, message):
+  obj.sendMessage(sys.argv[1].replace(" ", ''), Sender, message)
+  messagebox.showinfo('Done', 'Message Send Successfully')
+     
+btn_list = []
+def onClick(idx):
+    chatScreen(btn_list[idx].cget("text"))
+     
 
 
+def viewSendersScreen():
+    viewScreen = Toplevel(root)
+    viewScreen.title("Senders")
+    viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
+    viewScreen.config(background='black')
+    x = 100
+    btn = []
+    for i in range(len(obj.getSenders())):
+      btn = Button(viewScreen, text=obj.getSenders()[i], command = lambda idx = i: onClick(idx), background='darkred',fg='white')
+      btn.config(padx=100, pady=30)
+      btn.place(x= 500, y = x + 200)
+      x += 100 
+      btn_list.append(btn)
+      
+      
 def saveResults():
   ID = nationalID.get()
   case = caseNumber.get()
@@ -205,7 +260,7 @@ if __name__ == "__main__":
   btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='white',fg='black')
   btn.config(padx=100, pady=20)
   btn.place(x= 830, y=720)
-  btnChat = Button(root, text= 'view Messages',  command= chatScreen, background='white',fg='black')
+  btnChat = Button(root, text= 'view Messages',  command= viewSendersScreen, background='white',fg='black')
   btnChat.config(padx=75, pady=20)
   btnChat.place(x= 830, y=820)
   btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
