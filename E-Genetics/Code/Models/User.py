@@ -74,6 +74,9 @@ class User:
        return False   
 
     def __checkUser(self, userName, password):
+      if(userName == ''):
+        return False
+      else:
         docs = self.__db.collection('adminUsers').document(userName)
         val = docs.get().to_dict()
         if(docs.get().exists):  

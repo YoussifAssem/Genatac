@@ -10,7 +10,7 @@ def ProcessFile():
      ##   print("Usage: python data.csv sequence.txt")
        ## sys.exit()
 
-    data = csv.DictReader(open("databases/large.csv"))
+    data = csv.DictReader(open("large.csv"))
 
     dna_file = "23.txt"
     with open(dna_file) as f:
@@ -33,12 +33,11 @@ def ProcessFile():
        
         if target == extracted_db_row:
             #print(row['name'])
-            print (counts)
-            return
+           return 
 
 
     ##print("No match")
-    print (counts)
+    return counts
    
 
 def max_consecutive_matches(sequence, sub_str):

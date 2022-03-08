@@ -93,13 +93,16 @@ def login_verify():
     username_login_entry.delete(0, END)
     password_login_entry.delete(0, END)
 
-    list_of_files = os.listdir()
     hashed_password1 = hashlib.sha256(password1.encode('utf-8')).hexdigest()
     if(user.logIn(username1, hashed_password1)):
         main_screen.destroy()
         newScreen(username1)
+    
+    elif(username1 == '' or hashed_password1 == ''):
+        messagebox.showerror('Error', 'Error: Please Fill All Requirements')
+        return    
         
-    else:
+    else: 
         messagebox.showerror('Error', 'Error: Data Is Not Exist')   
     
 

@@ -1,15 +1,14 @@
-from re import X
-from matplotlib.pyplot import text
-from numpy import insert
+
 import pandas as pd
 from Models.User import User
-from tkinter import Y, StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, messagebox
+from tkinter import  StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, font, messagebox
 from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
 import hashlib
 import sys  
 
+from bio import Whole
 def destroyScreens():
   root.destroy()
 
@@ -23,7 +22,10 @@ def chatScreen(Sender):
     message = StringVar()
     Label(viewScreen,text='Please, Type Message Here \t' + Sender, font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=800)
     send = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
-    send.insert(END, '\tSender Messages')
+    send.tag_config('titleColor', foreground='red', font=("Calibri", 20, 'underline'))
+ 
+    
+    send.insert(END,  Sender + ' Messages\n', 'titleColor')
     for i in  obj.getSenderMessages(Sender, sys.argv[1].replace(" ","")):
       send.insert(END, '\n' + i)
       send.tag_configure("tag_name", justify='center')
@@ -31,7 +33,8 @@ def chatScreen(Sender):
     send.config(state='disabled')
     send.place(x=50,y=40)
     receive = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
-    receive.insert(END, '\tReceiver Messages')
+    receive.tag_config('titleColor', foreground='red', font=("Calibri", 20, 'underline'))
+    receive.insert(END,  sys.argv[1].replace(' ', '') + ' Messages\n', 'titleColor')
     for i in  obj.getReceiverMessages(sys.argv[1].replace(" ",""), Sender):
       receive.insert(END, '\n' + i)
      
@@ -243,6 +246,28 @@ def open_file():
         '''Returns the probability this may not be the father'''
         print("So, The Probability this may Not be the Father: ", obj.calculateProbability()[1])
 
+def viewWholeGenome(seq):
+        viewScreen = Toplevel(root)
+        viewScreen.title("Report")
+        viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
+        viewScreen.config(background='black')
+        T = Text(viewScreen, height=100, width=600, bg='white', fg='black', font='Helvetica 18 bold')
+        T.tag_configure("tag_name", justify='center')
+        T.tag_config('warningColor', foreground='red')
+        T.tag_config('titleColor', foreground='green')
+        T.insert(END, '\n\n\n\n\nThe STR for Alleles in whole Genome \n\n\n', 'titleColor')
+        T.insert(END, seq, 'warningColor')
+        T.tag_add("tag_name", "1.0", "end")
+        T.config(state='disabled')
+        T.pack(pady=200, padx=500)
+        
+def wholeGenome():
+  file = askopenfile(mode ='r', filetypes =[('Python Files', '*.fsa')]) 
+  if file is not None:
+     wG = Whole()
+     wG.runAlgorithm(name=file.name)
+     viewWholeGenome(wG.getSequence())
+
 if __name__ == "__main__":
   obj = User()
   root = Tk(className='Python Examples - Window Color')  
@@ -260,9 +285,12 @@ if __name__ == "__main__":
   btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='white',fg='black')
   btn.config(padx=100, pady=20)
   btn.place(x= 830, y=720)
+  btnWG = Button(root, text= 'Upload Whole Genome',  command= lambda: wholeGenome(), background='white',fg='black')
+  btnWG.config(padx=50, pady=20)
+  btnWG.place(x= 830, y=820)
   btnChat = Button(root, text= 'view Messages',  command= viewSendersScreen, background='white',fg='black')
   btnChat.config(padx=75, pady=20)
-  btnChat.place(x= 830, y=820)
+  btnChat.place(x= 830, y=920)
   btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
   btnDestroy.config(padx=100, pady=30)
   btnDestroy.place(x= 1500, y=760)
