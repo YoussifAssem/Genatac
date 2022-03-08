@@ -13,7 +13,6 @@ class viewChat extends StatefulWidget {
 }
 
 class _viewChat extends State<viewChat> {
-  final search = TextEditingController();
   User user = User();
   @override
   Widget build(BuildContext context) {

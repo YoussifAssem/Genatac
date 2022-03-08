@@ -60,28 +60,6 @@ class userServices {
     }
   }
 
-  Future<String?> sendMessage(
-      {required String receiver, required String message}) async {
-    try {
-      DocumentReference ref =
-          FirebaseFirestore.instance.collection('Chatting').doc();
-      FirebaseFirestore.instance.runTransaction((transaction) async {
-        DocumentSnapshot snapShot = await transaction.get(ref);
-        if (!snapShot.exists) {
-          ref.set({
-            'Sender': _auth.currentUser!.email,
-            'Receiver': receiver,
-            'Message': message
-          });
-          return 'Done';
-        }
-      });
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
-    return null;
-  }
-
   Future<Object?> editProfile(
       {required String email, required String password}) async {
     try {

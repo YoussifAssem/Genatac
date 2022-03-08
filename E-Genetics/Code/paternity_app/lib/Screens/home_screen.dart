@@ -11,7 +11,6 @@ class homeScreen extends StatefulWidget {
 }
 
 class _homeScreen extends State<homeScreen> {
-  final search = TextEditingController();
   User user = User();
   @override
   Widget build(BuildContext context) {

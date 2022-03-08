@@ -6,26 +6,37 @@ import 'package:flutter/material.dart';
 
 class viewResults extends StatefulWidget {
   late String _userName;
-  late String _caseID;
+  late String _nationalID;
+  late String _caseNumber;
 
-  viewResults({required String userName, required String caseID}) {
+  viewResults(
+      {required String userName,
+      required String nationalID,
+      required String caseNumber}) {
     _userName = userName;
-    _caseID = caseID;
+    _nationalID = nationalID;
+    _caseNumber = caseNumber;
   }
   @override
   State<StatefulWidget> createState() {
     // ignore: no_logic_in_create_state
-    return _viewResults(userName: _userName, caseID: _caseID);
+    return _viewResults(
+        userName: _userName, nationalID: _nationalID, caseNumber: _caseNumber);
   }
 }
 
 class _viewResults extends State<viewResults> {
   late String _userName;
-  late String _caseID;
+  late String _nationalID;
+  late String _caseNumber;
 
-  _viewResults({required String userName, required String caseID}) {
+  _viewResults(
+      {required String userName,
+      required String nationalID,
+      required String caseNumber}) {
     _userName = userName;
-    _caseID = caseID;
+    _nationalID = nationalID;
+    _caseNumber = caseNumber;
   }
 
   @override
@@ -55,7 +66,8 @@ class _viewResults extends State<viewResults> {
               .collection('adminUsers')
               .doc(_userName)
               .collection('Results')
-              .where('ID', isEqualTo: _caseID)
+              .where('ID', isEqualTo: _nationalID)
+              .where('caseNumber', isEqualTo: _caseNumber)
               .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

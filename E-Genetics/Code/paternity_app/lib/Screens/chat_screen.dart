@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 
 class Chat extends StatefulWidget {
@@ -56,6 +56,7 @@ class _Chat extends State<Chat> {
             ),
             Container(
               decoration: const BoxDecoration(
+                color: Colors.white,
                 border: Border(
                   top: BorderSide(
                     color: Colors.white,
@@ -67,11 +68,8 @@ class _Chat extends State<Chat> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: TextFormField(
                       controller: message,
-                      onChanged: (value) {
-                        messageText = value;
-                      },
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                           vertical: 10,
@@ -85,15 +83,15 @@ class _Chat extends State<Chat> {
                   ),
                   TextButton(
                     onPressed: () {
-                      message.clear(); //to clear text feild
                       FirebaseFirestore.instance.collection('Chatting').add({
-                        'Message': messageText,
+                        'Message': message.text,
                         'Sender':
                             FirebaseAuth.instance.currentUser!.email.toString(),
                         'Receiver': _title,
                         'Time':
                             FieldValue.serverTimestamp(), //to arrange messages
                       });
+                      message.clear(); //to clear text feild
                     },
                     child: Text(
                       'send',
@@ -139,14 +137,25 @@ class messagestreambulder extends StatelessWidget {
         } else {
           final messages = snapshot.data!.docs.reversed;
           for (var message in messages) {
-            if (message.get('Sender') ==
-                    FirebaseAuth.instance.currentUser!.email ||
-                message.get('Receiver') ==
-                    FirebaseAuth.instance.currentUser!.email) {
+            if (message.get('Receiver') ==
+                    FirebaseAuth.instance.currentUser!.email.toString() &&
+                message.get('Sender') == _user) {
               final messagewidget = messageline(
                 sender: message.get('Sender'),
                 text: message.get('Message'),
-                receiver: _user,
+                receiver: FirebaseAuth.instance.currentUser!.email,
+                isme: FirebaseAuth.instance.currentUser!.email ==
+                    message.get('Sender'), // short if stament
+              );
+              messagewidgets.add(messagewidget);
+            }
+            if (message.get('Sender') ==
+                    FirebaseAuth.instance.currentUser!.email.toString() &&
+                message.get('Receiver') == _user) {
+              final messagewidget = messageline(
+                sender: message.get('Sender'),
+                text: message.get('Message'),
+                receiver: FirebaseAuth.instance.currentUser!.email,
                 isme: FirebaseAuth.instance.currentUser!.email ==
                     message.get('Sender'), // short if stament
               );

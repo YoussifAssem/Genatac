@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paternity_app/Services/user_services.dart';
 
@@ -74,12 +75,6 @@ class User {
   Future<Map<String, dynamic>?> editProfile(
       {required String e, required String password}) async {
     await uS.editProfile(email: e, password: password);
-    return null;
-  }
-
-  Future<String?> sendMessage(
-      {required String receiver, required String message}) async {
-    await uS.sendMessage(receiver: receiver, message: message);
     return null;
   }
 

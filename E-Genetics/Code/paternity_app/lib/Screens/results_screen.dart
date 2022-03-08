@@ -1,7 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors, camel_case_types
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, avoid_print
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
@@ -17,6 +18,7 @@ class Results extends StatefulWidget {
 class _Results extends State<Results> {
   final caseID = TextEditingController();
   final userName = TextEditingController();
+  final nationalID = TextEditingController();
 
   late String text;
   User user = User();
@@ -95,32 +97,94 @@ class _Results extends State<Results> {
               height: 50,
             ),
             Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[900]),
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
                 ),
-                child: const Text('View Results'),
-                onPressed: () async {
-                  if (caseID.text == '' || userName.text == '') {
-                    text = 'Error, Please fill all requirements';
-                    showAlertDialog(context);
-                  } else {
-                    var digest1 = sha256
-                        .convert(utf8.encode(caseID.text)); // Hashing Process
-                    print("Digest as hex string: $digest1");
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => viewResults(
-                                userName: userName.text,
-                                caseID:
-                                    '876bd08d2e46b02bfd07438c84d316f7c0ea50a38d582898d0c5b0a3430be640',
-                              )),
-                    );
-                  }
-                },
+                controller: nationalID,
+                maxLength: 14,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: Colors.blue[900],
+                  hintText: 'Enter National ID',
+                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
+                ),
               ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.blue[900]),
+                  ),
+                  child: const Text('View Results'),
+                  onPressed: () async {
+                    if (caseID.text == '' || userName.text == '') {
+                      text = 'Error, Please fill all requirements';
+                      showAlertDialog(context);
+                    } else if (nationalID.text.length != 14) {
+                      text = 'Error, Ntional ID is Not Exist';
+                      showAlertDialog(context);
+                    } else {
+                      try {
+                        DocumentReference ref = FirebaseFirestore.instance
+                            .collection('adminUsers')
+                            .doc(userName.text)
+                            .collection('Results')
+                            .doc(sha256
+                                .convert(utf8.encode(nationalID.text))
+                                .toString());
+                        FirebaseFirestore.instance
+                            .runTransaction((transaction) async {
+                          DocumentSnapshot snapShot =
+                              await transaction.get(ref);
+                          if (snapShot.exists) {
+                            if (snapShot['ID'] ==
+                                    sha256
+                                        .convert(utf8.encode(nationalID.text))
+                                        .toString() &&
+                                snapShot['caseNumber'] ==
+                                    sha256
+                                        .convert(utf8.encode(caseID.text))
+                                        .toString()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => viewResults(
+                                          userName: userName.text,
+                                          caseNumber: sha256
+                                              .convert(utf8.encode(caseID.text))
+                                              .toString(),
+                                          nationalID: sha256
+                                              .convert(
+                                                  utf8.encode(nationalID.text))
+                                              .toString(),
+                                        )),
+                              );
+                            } else {
+                              text = 'Error, Data Is Not Exist';
+                              showAlertDialog(context);
+                            }
+                          } else {
+                            text = 'Error, User Name Is Not Exist';
+                            showAlertDialog(context);
+                          }
+                        });
+                      } catch (e) {
+                        text = 'Error, Exception error occured';
+                        showAlertDialog(context);
+                      }
+                    }
+                  }),
             ),
           ],
         ));
