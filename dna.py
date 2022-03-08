@@ -2,16 +2,17 @@ import csv
 from itertools import count
 import sys
 
-def main():
 
-    if len(sys.argv) != 3:
-        print("Usage: python data.csv sequence.txt")
-        sys.exit()
+def ProcessFile():
+   
+ 
+   ## if len(sys.argv) != 3:
+     ##   print("Usage: python data.csv sequence.txt")
+       ## sys.exit()
 
-    database = open(sys.argv[1]) 
-    data = csv.DictReader(database)
+    data = csv.DictReader(open("databases/large.csv"))
 
-    dna_file = sys.argv[2]
+    dna_file = "23.txt"
     with open(dna_file) as f:
         sequence = f.read()
 
@@ -33,13 +34,12 @@ def main():
         if target == extracted_db_row:
             #print(row['name'])
             print (counts)
-            database.close()
             return
 
 
     ##print("No match")
     print (counts)
-    database.close()
+   
 
 def max_consecutive_matches(sequence, sub_str):
     match_counter = 0
@@ -61,4 +61,3 @@ def max_consecutive_matches(sequence, sub_str):
     return match_counter
 
 
-main()
