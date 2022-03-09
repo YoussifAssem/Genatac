@@ -42,7 +42,7 @@ class _viewResults extends State<viewResults> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
           backgroundColor: Colors.blue[900],
           title: const Text(
@@ -76,7 +76,7 @@ class _viewResults extends State<viewResults> {
                 child: Text(
                   "\t\t\t\t\t\t\tAdmin Name You Entered Is Not True \n May be Admin Not Submit the data until now",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
@@ -136,10 +136,27 @@ class _viewResults extends State<viewResults> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 80),
+                  Text(
+                    doc['result'],
+                    style: const TextStyle(
+                        fontSize: 23,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
                 ].toList());
               }).toList(),
             );
           },
         ));
+  }
+
+  bool checkProbability(double probFather, double probNotFather) {
+    if (probFather > probNotFather) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -22,7 +22,7 @@ class _logIn extends State<logIn> {
   Widget build(BuildContext context) {
     return Center(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
@@ -40,7 +40,7 @@ class _logIn extends State<logIn> {
               child: Text(
                 'Welcome In Genetics',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 30),
@@ -80,9 +80,7 @@ class _logIn extends State<logIn> {
                 filled: true,
                 fillColor: Colors.blue[900],
                 hintText: 'Email',
-                hintStyle: const TextStyle(
-                  fontSize: 18,
-                ),
+                hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
             const SizedBox(
@@ -104,9 +102,7 @@ class _logIn extends State<logIn> {
                 filled: true,
                 fillColor: Colors.blue[900],
                 hintText: 'Password',
-                hintStyle: const TextStyle(
-                  fontSize: 18,
-                ),
+                hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
               ),
               obscureText: true,
             ),

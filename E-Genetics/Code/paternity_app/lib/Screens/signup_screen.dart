@@ -25,7 +25,7 @@ class _SignUp extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
           backgroundColor: Colors.blue[900],
           title: const Text(
@@ -41,7 +41,7 @@ class _SignUp extends State<SignUp> {
                   child: Text(
                 'Sign Up',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 30),
@@ -66,9 +66,7 @@ class _SignUp extends State<SignUp> {
                   filled: true,
                   fillColor: Colors.blue[900],
                   hintText: 'Name',
-                  hintStyle: const TextStyle(
-                    fontSize: 18,
-                  ),
+                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
               const SizedBox(height: 25.0),
@@ -85,9 +83,7 @@ class _SignUp extends State<SignUp> {
                   filled: true,
                   fillColor: Colors.blue[900],
                   hintText: 'Email',
-                  hintStyle: const TextStyle(
-                    fontSize: 18,
-                  ),
+                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
               const SizedBox(
@@ -106,9 +102,7 @@ class _SignUp extends State<SignUp> {
                   filled: true,
                   fillColor: Colors.blue[900],
                   hintText: 'Password',
-                  hintStyle: const TextStyle(
-                    fontSize: 18,
-                  ),
+                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 obscureText: true,
               ),
@@ -127,9 +121,7 @@ class _SignUp extends State<SignUp> {
                   filled: true,
                   fillColor: Colors.blue[900],
                   hintText: 'Confirm Password',
-                  hintStyle: const TextStyle(
-                    fontSize: 18,
-                  ),
+                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 obscureText: true,
               ),

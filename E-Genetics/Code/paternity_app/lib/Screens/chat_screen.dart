@@ -27,7 +27,7 @@ class _Chat extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: const Color.fromARGB(255, 209, 207, 207),
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         title: Text(
@@ -196,7 +196,7 @@ class messageline extends StatelessWidget {
           children: [
             Text(
               '$sender',
-              style: TextStyle(fontSize: 12, color: Colors.yellow[900]),
+              style: const TextStyle(fontSize: 12, color: Colors.black),
             ),
             Material(
               elevation: 5,

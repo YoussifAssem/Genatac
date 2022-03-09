@@ -42,35 +42,35 @@ class _Menu extends State<Menu> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue[900],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: const Icon(Icons.chat),
             label: 'Chat',
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue[900],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.grid_view),
+            icon: const Icon(Icons.grid_view),
             label: 'Results',
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue[900],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
             label: 'Edit Profile',
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue[900],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             label: 'Log Out',
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.blue[900],
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

@@ -17,7 +17,7 @@ class _viewChat extends State<viewChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: const Color.fromARGB(255, 209, 207, 207),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue[900],
@@ -52,9 +52,9 @@ class _viewChat extends State<viewChat> {
                 const SizedBox(height: 50),
                 Container(
                   margin: const EdgeInsets.only(right: 20, left: 20),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: Colors.amber,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    color: Colors.blue[900],
                   ),
                   child: ListTile(
                     onTap: () {
@@ -67,7 +67,9 @@ class _viewChat extends State<viewChat> {
                       doc['userName'].toString(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 25),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                          color: Colors.white),
                     ),
                   ),
                 ),

@@ -15,7 +15,7 @@ class _homeScreen extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
@@ -42,7 +42,7 @@ class _homeScreen extends State<homeScreen> {
                 fontSize: 30,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
-                color: Colors.white),
+                color: Colors.black),
           ),
         ));
   }

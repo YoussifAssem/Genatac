@@ -25,7 +25,7 @@ class _Results extends State<Results> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],

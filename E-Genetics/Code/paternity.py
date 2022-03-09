@@ -17,10 +17,10 @@ def chatScreen(Sender):
     viewScreen = Toplevel(root)
     viewScreen.title("Chatting")
     viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
-    viewScreen.config(background='black')
     global message
     message = StringVar()
-    Label(viewScreen,text='Please, Type Message Here \t' + Sender, font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=800)
+    Label(viewScreen,text="Chat " + Sender, bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+    Label(viewScreen,text='Please, Type Message Here \t' + Sender, font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=850)
     send = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
     send.tag_config('titleColor', foreground='red', font=("Calibri", 20, 'underline'))
  
@@ -31,7 +31,7 @@ def chatScreen(Sender):
       send.tag_configure("tag_name", justify='center')
     send.tag_configure("tag_name", justify='center')
     send.config(state='disabled')
-    send.place(x=50,y=40)
+    send.place(x=50,y=200)
     receive = Text(viewScreen, height=25, width=40, bg='white', fg='black', font='Helvetica 18 bold')
     receive.tag_config('titleColor', foreground='red', font=("Calibri", 20, 'underline'))
     receive.insert(END,  sys.argv[1].replace(' ', '') + ' Messages\n', 'titleColor')
@@ -40,18 +40,22 @@ def chatScreen(Sender):
      
     receive.tag_configure("tag_name", justify='center')
     receive.config(state='disabled')
-    receive.place(x=1030,y=40)
+    receive.place(x=1030,y=200)
    
     me = Text(viewScreen, height=100, width=80, bg='white', fg='black', font='Helvetica 18 bold')
     me.place(x=0, y=900)
     btn = Button(viewScreen, text= 'Send Message', command= lambda: runChat(Sender, me.get("1.0","end-1c"))
-    ,background='darkred',fg='white')
+    ,background='darkblue',fg='white')
     btn.config(padx=100, pady=30)
     btn.place(x= 1300, y=960)
    
 def runChat(Sender, message):
-  obj.sendMessage(sys.argv[1].replace(" ", ''), Sender, message)
-  messagebox.showinfo('Done', 'Message Send Successfully')
+  if(message == ''):
+    messagebox.showerror('Error', 'Please Type Message Here To Send It')
+    return
+  else:  
+    obj.sendMessage(sys.argv[1].replace(" ", ''), Sender, message)
+    messagebox.showinfo('Done', 'Message Send Successfully')
      
 btn_list = []
 def onClick(idx):
@@ -63,11 +67,11 @@ def viewSendersScreen():
     viewScreen = Toplevel(root)
     viewScreen.title("Senders")
     viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
-    viewScreen.config(background='black')
     x = 100
     btn = []
+    Label(viewScreen,text="Messages", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
     for i in range(len(obj.getSenders())):
-      btn = Button(viewScreen, text=obj.getSenders()[i], command = lambda idx = i: onClick(idx), background='darkred',fg='white')
+      btn = Button(viewScreen, text=obj.getSenders()[i], command = lambda idx = i: onClick(idx), background='darkblue',fg='white')
       btn.config(padx=100, pady=30)
       btn.place(x= 500, y = x + 200)
       x += 100 
@@ -154,21 +158,21 @@ def open_file():
         viewScreen = Toplevel(root)
         viewScreen.title("Report")
         viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
-        viewScreen.config(background='black')
+        Label(viewScreen, text="Report Rs Numbers", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
         global nationalID, caseNumber
         nationalID = StringVar()
         caseNumber = StringVar()
-        Label(viewScreen,text='Please, Enter Father National ID', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=0)
+        Label(viewScreen,text='Please, Enter Father National ID', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=200)
         ID = Entry(viewScreen, textvariable=nationalID, width=50, borderwidth=20)
-        ID.place(x=0, y=50)
+        ID.place(x=0, y=250)
         
-        Label(viewScreen,text='Please, Enter Case Number', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=140)
+        Label(viewScreen,text='Please, Enter Case Number', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=330)
         case = Entry(viewScreen, textvariable=caseNumber, width=50, borderwidth=20)
-        case.place(x=0, y=200)
+        case.place(x=0, y=380)
         
-        btnSave = Button(viewScreen, text= 'Save Results', command = saveResults,  background='darkgreen',fg='white')
+        btnSave = Button(viewScreen, text= 'Save Results', command = saveResults,  background='darkblue',fg='white')
         btnSave.config(padx=100, pady=20)
-        btnSave.place(x=0, y=300)
+        btnSave.place(x=0, y=500)
         
         T = Text(viewScreen, height=400, width=200, bg='white', fg='white', font='Helvetica 18 bold')
         T.tag_configure("tag_name", justify='center')
@@ -214,11 +218,7 @@ def open_file():
         T.config(state='disabled')
         T.pack(pady=200, padx=500)
         
-        
-        #btnResults = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
-        #btnResults.config(padx=100, pady=20)
-        #btnResults.place(x= 1500, y=760)
-
+        '''
         print('The Number of rsNumbers', len(rsSimilar)+ len(rsFather)+len(rsMother)-4)
         print("\nThe Number of Chromosomes fit the rule: ", len(chroFather)+ len(chroMother))
         print("\nFather Chromosomes: ", chroFather[0:5])
@@ -241,16 +241,31 @@ def open_file():
         print('Df rsNumber', rsMother[0:5])
         print('Df Child', chMother[0:5])
         print('Df Mother', mother[0:5])
-        '''Returns the probability this may be the father'''
+        Returns the probability this may be the father
         print("So, The Probability this may be the Father: ", obj.calculateProbability()[0])
-        '''Returns the probability this may not be the father'''
+        Returns the probability this may not be the father
         print("So, The Probability this may Not be the Father: ", obj.calculateProbability()[1])
-
+        '''
 def viewWholeGenome(seq):
         viewScreen = Toplevel(root)
         viewScreen.title("Report")
         viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
-        viewScreen.config(background='black')
+        Label(viewScreen, text="Report Whole Genome", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+        global nationalID, caseNumber
+        nationalID = StringVar()
+        caseNumber = StringVar()
+        Label(viewScreen,text='Please, Enter Father National ID', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=200)
+        ID = Entry(viewScreen, textvariable=nationalID, width=50, borderwidth=20)
+        ID.place(x=0, y=250)
+        
+        Label(viewScreen,text='Please, Enter Case Number', font=("Calibri", 17, 'underline'), fg='black').place(x=0, y=330)
+        case = Entry(viewScreen, textvariable=caseNumber, width=50, borderwidth=20)
+        case.place(x=0, y=380)
+        
+        btnSave = Button(viewScreen, text= 'Save Results', command = saveResults,  background='darkblue',fg='white')
+        btnSave.config(padx=100, pady=20)
+        btnSave.place(x=0, y=500)
+        
         T = Text(viewScreen, height=100, width=600, bg='white', fg='black', font='Helvetica 18 bold')
         T.tag_configure("tag_name", justify='center')
         T.tag_config('warningColor', foreground='red')
@@ -273,25 +288,24 @@ if __name__ == "__main__":
   root = Tk(className='Python Examples - Window Color')  
   root.title('paternityTest')
   root.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight()))
-  root.config(bg='black')
   root.eval('tk::PlaceWindow . center')
   load = Image.open("Images/family-law.png")
   render = ImageTk.PhotoImage(load) 
   img = Label(image=render)
   img.image = render
-  Label(text='Welcome In Genetics', bg='black', fg='white', font='Helvetica 20 bold').place(x=820, y=210)
-  Label(text='Welcome ' + sys.argv[1].replace(" ", ''), bg='black', fg='white', font='Helvetica 20 bold').place(x=860, y=250)
-  img.place(x=700, y=200)
-  btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='white',fg='black')
+  Label(text='Welcome In Genetics', bg='darkblue', fg='white', font='Helvetica 20 bold').place(x=820, y=110)
+  Label(text='Welcome ' + sys.argv[1].replace(" ", ''), bg='darkblue', fg='white', font='Helvetica 20 bold').place(x=860, y=150)
+  img.place(x=700, y=100)
+  btn = Button(root, text= 'Browse',  command= lambda:open_file(), background='darkblue',fg='white')
   btn.config(padx=100, pady=20)
   btn.place(x= 830, y=720)
-  btnWG = Button(root, text= 'Upload Whole Genome',  command= lambda: wholeGenome(), background='white',fg='black')
+  btnWG = Button(root, text= 'Upload Whole Genome',  command= lambda: wholeGenome(), background='darkblue',fg='white')
   btnWG.config(padx=50, pady=20)
   btnWG.place(x= 830, y=820)
-  btnChat = Button(root, text= 'view Messages',  command= viewSendersScreen, background='white',fg='black')
+  btnChat = Button(root, text= 'view Messages',  command= viewSendersScreen, background='darkblue',fg='white')
   btnChat.config(padx=75, pady=20)
   btnChat.place(x= 830, y=920)
-  btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkred',fg='white')
+  btnDestroy = Button(root, text= 'Finish Work',  command= destroyScreens, background='darkblue',fg='white')
   btnDestroy.config(padx=100, pady=30)
   btnDestroy.place(x= 1500, y=760)
 

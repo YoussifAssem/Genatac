@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import hashlib
 import os
+from turtle import bgcolor
 from Models.User import User
 from PIL import ImageTk
 from PIL import Image  
@@ -15,7 +16,7 @@ def register():
     register_screen = Toplevel(main_screen)
     register_screen.title("Register")
     register_screen.geometry("%dx%d" % (register_screen.winfo_screenwidth(), register_screen.winfo_screenheight()))
-    Label(register_screen, text="Welcome In Genetics\n(Registration)", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+    Label(register_screen, text="Welcome In Genetics\n(Registration)", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
    
     global username
     global password
@@ -33,7 +34,7 @@ def register():
     password_entry = Entry(register_screen, textvariable=password, show='*', width=50)
     password_entry.pack()
     Label(register_screen, text="").pack()
-    btn = Button(register_screen, text="Register", width=10, height=1, bg="black", fg='white', command = register_user, font=("Calibri", 17))
+    btn = Button(register_screen, text="Register", width=10, height=1, bg="darkblue", fg='white', command = register_user, font=("Calibri", 17))
     btn.configure(padx=100, pady=20)    
     btn.pack()
 # Designing window for login 
@@ -43,7 +44,7 @@ def login():
     login_screen = Toplevel(main_screen)
     login_screen.title("Login")
     login_screen.geometry("%dx%d" % (login_screen.winfo_screenwidth(), login_screen.winfo_screenheight()))
-    Label(login_screen, text="Welcome In Genetics\n(Log In)", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+    Label(login_screen, text="Welcome In Genetics\n(Log In)", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
     Label(login_screen, text="", pady=100).pack()
    
     
@@ -64,7 +65,7 @@ def login():
     password_login_entry = Entry(login_screen, textvariable=password_verify, show= '*', width=50)
     password_login_entry.pack()
     Label(login_screen, text="").pack()
-    btn = Button(login_screen, text="Login", width=10, height=1, command = login_verify, bg='black', fg='white', font=("Calibri", 17))
+    btn = Button(login_screen, text="Login", width=10, height=1, command = login_verify, bg='darkblue', fg='white', font=("Calibri", 17))
     btn.configure(padx=100, pady=20)    
     btn.pack()
    
@@ -131,7 +132,7 @@ def main_account_screen():
     main_screen = Tk()
     main_screen.geometry("%dx%d" % (main_screen.winfo_screenwidth(), main_screen.winfo_screenheight()))
     main_screen.title("Account Login")
-    Label(text="Welcome In Genetics", bg="black", fg='red', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+    Label(text="Welcome In Genetics", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
     Label(text="").pack()
     load = Image.open("Images/family-law.png")
     render = ImageTk.PhotoImage(load) 
@@ -139,8 +140,8 @@ def main_account_screen():
     img.image = render
     img.place(x=700, y=200)
   
-    Button(text="Login", height="2", width="30", command = login, background='darkred',fg='white').place(x=840, y=700)
-    Button(text="Register", height="2", width="30", command=register, background='darkgreen',fg='white').place(x=840, y=800)
+    Button(text="Login", height="2", width="30", command = login, background='darkblue',fg='white').place(x=840, y=700)
+    Button(text="Register", height="2", width="30", command=register, background='darkblue',fg='white').place(x=840, y=800)
 
     main_screen.mainloop()
 

@@ -92,11 +92,21 @@ class User:
           return True
         else:  
           ref = self.__db.collection('adminUsers').document(userName).collection('Results').document(ID)
-          ref.set({
-            'ID':ID,
-            'caseNumber':caseNumber,
-            'probabilityFather': probFather,
-            'probabilityNotFather':probNotFather
+          if(probFather > probNotFather):
+            ref.set({
+              'ID':ID,
+              'caseNumber':caseNumber,
+              'probabilityFather': probFather,
+              'probabilityNotFather':probNotFather,
+              'result':'So, This child is related to this Father'
+          })
+          else:
+              ref.set({
+              'ID':ID,
+              'caseNumber':caseNumber,
+              'probabilityFather': probFather,
+              'probabilityNotFather':probNotFather,
+              'result':'So, This child is NOT related to this Father'
           })
           return False
     def __checkResults(self, ID, userName):
