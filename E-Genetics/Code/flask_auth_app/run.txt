@@ -1,0 +1,6 @@
+SET FLASK_APP=project
+SET FLASK_ENV=development
+flask run
+
+set FLASK_APP=project
+set FLASK_DEBUG=1
