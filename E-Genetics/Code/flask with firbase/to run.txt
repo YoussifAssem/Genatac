@@ -1,4 +1,5 @@
-to run the project :
+to run the project run following comands in the root folder of the website 
+for any inquiry please contact ahmed gamal :) :
 
 set FLASK_APP=main.py
 set FLASK_DEBUG=1
