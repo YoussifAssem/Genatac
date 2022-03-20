@@ -172,7 +172,8 @@ class _SignUp extends State<SignUp> {
                                   password: p.text) ==
                               'Error')
                             {
-                              text = 'Error in Data',
+                              text =
+                                  'Error Email is Aleady Exist OR There are an error in Data',
                               showAlertDialog(context),
                             }
                           else

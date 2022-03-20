@@ -170,10 +170,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 text = "Password Doesn't Match !";
                                 showAlertDialog(context);
                               } else {
-                                await user.editProfile(
-                                    e: email.text, password: password.text);
-                                text = 'Done, Data Updated successfully';
-                                showAlertDialog(context);
+                                if (await user.editProfile(
+                                        email: email.text,
+                                        password: password.text) ==
+                                    'Error') {
+                                  text = 'Error, Data Email Already Exist';
+                                  showAlertDialog(context);
+                                } else {
+                                  text = 'Done, Data Updated successfully';
+                                  showAlertDialog(context);
+                                }
                               }
                             },
                           )

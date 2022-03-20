@@ -1,57 +1,74 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:paternity_app/Services/user_services.dart';
 
 class User {
   // ignore: prefer_final_fields, unused_field
   late String _name;
   late String _email;
   late String _password;
-  userServices uS = userServices(FirebaseAuth.instance);
 
   signUp({
     required String name,
     required String email,
     required String password,
   }) async {
-    _setName(name);
-    _setEmail(email);
-    _setPassword(password);
-    await uS.register(
-        name: getName(), email: getEmail(), password: getPassword());
-    if (_checkUser() == '') {
-      return '';
-    } else {
-      return 'Error';
+    try {
+      _setName(name);
+      _setEmail(email);
+      _setPassword(password);
+      if (getEmail() != 'Error' &&
+          getName() != 'Error' &&
+          getPassword() != 'Error') {
+        final list =
+            await FirebaseAuth.instance.fetchSignInMethodsForEmail(getEmail());
+        if (list.isNotEmpty) {
+          return 'Error';
+        } else {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: getEmail(), password: getPassword());
+          DocumentReference ref = FirebaseFirestore.instance
+              .collection('Users')
+              .doc(FirebaseAuth.instance.currentUser!.uid);
+          FirebaseFirestore.instance.runTransaction((transaction) async {
+            DocumentSnapshot snapShot = await transaction.get(ref);
+            if (!snapShot.exists) {
+              ref.set({
+                'name': getName(),
+                'email': getEmail(),
+              });
+            }
+          });
+        }
+      } else {
+        return 'Error';
+      }
+    } on FirebaseAuthException catch (e) {
+      return e.message;
     }
   }
 
   String get Email {
-    return uS.getEmail();
+    return FirebaseAuth.instance.currentUser!.email.toString();
   }
 
   Future<String?> signOut() async {
-    await uS.signOut();
-    return null;
+    await FirebaseAuth.instance.signOut();
+    return '';
   }
 
   login(String email, String password) async {
-    userServices u = userServices(FirebaseAuth.instance);
     _setEmail(email);
     _setPassword(password);
-    if (await u.logIn(getEmail(), getPassword()) == 'Done') {
-      return '';
-    } else {
-      return 'Error';
-    }
-  }
-
-  _checkUser() {
-    if (_name == '' || _email == '' || _password == '') {
-      return 'Error';
-    } else {
-      return '';
+    if (getEmail() != 'Error' && getPassword() != 'Error') {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: getEmail(), password: getPassword());
+        return 'Done';
+      } on FirebaseAuthException catch (e) {
+        return e.message;
+      }
     }
   }
 
@@ -71,10 +88,38 @@ class User {
     _email = e;
   }
 
-  Future<Map<String, dynamic>?> editProfile(
-      {required String e, required String password}) async {
-    await uS.editProfile(email: e, password: password);
-    return null;
+  Future<String?> editProfile(
+      {required String email, required String password}) async {
+    try {
+      _setEmail(email);
+      _setPassword(password);
+      if (getEmail() != 'Error' && getPassword() != 'Error') {
+        final list =
+            await FirebaseAuth.instance.fetchSignInMethodsForEmail(getEmail());
+        if (list.isNotEmpty &&
+            getEmail() != FirebaseAuth.instance.currentUser!.email) {
+          return 'Error';
+        } else {
+          DocumentReference ref = FirebaseFirestore.instance
+              .collection('Users')
+              .doc(FirebaseAuth.instance.currentUser!.uid);
+          FirebaseFirestore.instance.runTransaction((transaction) async {
+            DocumentSnapshot snapShot = await transaction.get(ref);
+            FirebaseAuth.instance.currentUser!.updatePassword(getPassword());
+            FirebaseAuth.instance.currentUser!.updateEmail(getEmail());
+
+            if (snapShot.exists) {
+              transaction.update(ref, {
+                'email': getEmail(),
+              });
+            }
+          });
+          return 'Done';
+        }
+      }
+    } catch (e) {
+      return 'Error';
+    }
   }
 
   getEmail() {

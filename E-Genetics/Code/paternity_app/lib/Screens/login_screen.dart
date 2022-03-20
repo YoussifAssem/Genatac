@@ -125,12 +125,12 @@ class _logIn extends State<logIn> {
                         text = 'Email format is not true';
                         showAlertDialog(context);
                       } else {
-                        if (await user.login(email.text, password.text) ==
-                            'Error') {
+                        if (await user.login(email.text, password.text) !=
+                            'Done') {
                           text = 'Error, Email or Password is incorrect';
                           showAlertDialog(context);
                         } else {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => Menu()),
                           );
