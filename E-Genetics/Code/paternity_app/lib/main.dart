@@ -2,7 +2,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:paternity_app/Screens/login_screen.dart';
+import 'Screens/web/web_screen/login_screen.dart';
+//import 'Screens/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,11 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.landscapeLeft,
     ]);
     return MaterialApp(
+      //Log In For Web
       home: logIn(),
+      //Log In For Mobile
+
+      //home: logIn(),
     );
   }
 }
