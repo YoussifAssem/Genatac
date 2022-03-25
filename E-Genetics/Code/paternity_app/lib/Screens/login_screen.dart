@@ -38,7 +38,7 @@ class _logIn extends State<logIn> {
             ),
             const Center(
               child: Text(
-                'Welcome In Genetics',
+                'Welcome ',
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -99,6 +99,10 @@ class _logIn extends State<logIn> {
               //keyboardType: TextInputType.visiblePassword,
               controller: password,
               decoration: InputDecoration(
+                prefixIcon: const Icon(
+                  Icons.password,
+                  color: Colors.white,
+                ),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   borderSide: BorderSide.none,
@@ -114,7 +118,7 @@ class _logIn extends State<logIn> {
             SizedBox(
                 height: 45,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 250),
+                  padding: const EdgeInsets.only(left: 100, right: 100),
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:

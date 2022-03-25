@@ -59,6 +59,10 @@ class _Results extends State<Results> {
                 ),
                 controller: userName,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.admin_panel_settings,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,
@@ -82,6 +86,10 @@ class _Results extends State<Results> {
                 ),
                 controller: caseID,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.cases,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,
@@ -106,6 +114,10 @@ class _Results extends State<Results> {
                 controller: nationalID,
                 maxLength: 14,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.numbers,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,

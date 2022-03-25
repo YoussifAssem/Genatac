@@ -59,6 +59,10 @@ class _SignUp extends State<SignUp> {
                   FilteringTextInputFormatter.deny(RegExp('[^a-zA-Z]')),
                 ],
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,
@@ -76,6 +80,10 @@ class _SignUp extends State<SignUp> {
                 keyboardType: TextInputType.emailAddress,
                 controller: e,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.email,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,
@@ -95,6 +103,10 @@ class _SignUp extends State<SignUp> {
                 //keyboardType: TextInputType.visiblePassword,
                 controller: p,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.password,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,
@@ -114,6 +126,10 @@ class _SignUp extends State<SignUp> {
                 style: const TextStyle(fontSize: 18, color: Colors.white),
                 controller: cP,
                 decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.password,
+                    color: Colors.white,
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     borderSide: BorderSide.none,

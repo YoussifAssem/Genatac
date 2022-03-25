@@ -75,6 +75,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: email,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
@@ -98,6 +102,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: password,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.password,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
@@ -122,6 +130,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: confirmPassword,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.password,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
