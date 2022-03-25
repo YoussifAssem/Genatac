@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
 
+import 'menu.dart';
+
 class EditProfilePage extends StatefulWidget {
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -20,9 +22,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Menu(),
         backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
           title: const Text(
             'Edit Profile',
@@ -75,6 +77,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: email,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
@@ -98,6 +104,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: password,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.password,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
@@ -122,6 +132,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       autocorrect: true,
                       controller: confirmPassword,
                       decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.password,
+                            color: Colors.white,
+                          ),
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),

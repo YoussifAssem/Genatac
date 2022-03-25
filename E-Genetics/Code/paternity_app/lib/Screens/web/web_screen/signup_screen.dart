@@ -26,13 +26,13 @@ class _SignUp extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 209, 207, 207),
-        appBar: AppBar(
+        /*  appBar: AppBar(
           backgroundColor: Colors.blue[900],
           title: const Text(
             'Sign Up',
             style: TextStyle(color: Colors.white),
           ),
-        ),
+        ),*/
         body: Padding(
             padding: const EdgeInsets.all(2),
             child: ListView(children: <Widget>[
@@ -68,6 +68,10 @@ class _SignUp extends State<SignUp> {
                                 RegExp('[^a-zA-Z]')),
                           ],
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -88,6 +92,10 @@ class _SignUp extends State<SignUp> {
                           keyboardType: TextInputType.emailAddress,
                           controller: e,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -110,6 +118,10 @@ class _SignUp extends State<SignUp> {
                           //keyboardType: TextInputType.visiblePassword,
                           controller: p,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.password,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -132,6 +144,10 @@ class _SignUp extends State<SignUp> {
                               fontSize: 18, color: Colors.white),
                           controller: cP,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.password,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),

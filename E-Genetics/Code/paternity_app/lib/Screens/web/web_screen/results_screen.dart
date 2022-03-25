@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
 import 'package:paternity_app/Screens/web/web_screen/view_results_screen.dart';
 
+import 'menu.dart';
+
 class Results extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -25,9 +27,9 @@ class _Results extends State<Results> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Menu(),
         backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
           title: const Text(
             'Results',
@@ -66,6 +68,10 @@ class _Results extends State<Results> {
                           ),
                           controller: userName,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.admin_panel_settings,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -91,6 +97,10 @@ class _Results extends State<Results> {
                           ),
                           controller: caseID,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.cases,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -117,6 +127,10 @@ class _Results extends State<Results> {
                           controller: nationalID,
                           maxLength: 14,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.numbers,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),

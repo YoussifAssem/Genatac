@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
 import 'package:paternity_app/Screens/chat_screen.dart';
 
+import 'menu.dart';
+
 class viewChat extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -17,9 +19,9 @@ class _viewChat extends State<viewChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Menu(),
       backgroundColor: const Color.fromARGB(255, 209, 207, 207),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue[900],
         title: const Text(
           'View Users',

@@ -73,6 +73,10 @@ class _logIn extends State<logIn> {
               keyboardType: TextInputType.emailAddress,
               controller: email,
               decoration: InputDecoration(
+                prefixIcon: const Icon(
+                  Icons.email,
+                  color: Colors.white,
+                ),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   borderSide: BorderSide.none,

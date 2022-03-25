@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
-import 'package:paternity_app/Screens/web/web_screen/menu.dart';
+import 'package:paternity_app/Screens//web/web_screen/home_screen.dart';
 import 'package:paternity_app/Screens/web/web_screen/signup_screen.dart';
 
 class logIn extends StatefulWidget {
@@ -23,14 +23,14 @@ class _logIn extends State<logIn> {
     return Center(
         child: Scaffold(
             backgroundColor: const Color.fromARGB(255, 209, 207, 207),
-            appBar: AppBar(
+            /*  appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Colors.blue[900],
               title: const Text(
                 'Log In',
                 style: TextStyle(color: Colors.white),
               ),
-            ),
+            ),*/
             body: ListView(
               children: [
                 Container(
@@ -47,7 +47,7 @@ class _logIn extends State<logIn> {
                         ),
                         const Center(
                           child: Text(
-                            'Welcome In Genetics',
+                            'Welcome',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -84,6 +84,10 @@ class _logIn extends State<logIn> {
                           keyboardType: TextInputType.emailAddress,
                           controller: email,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -108,6 +112,10 @@ class _logIn extends State<logIn> {
                           //keyboardType: TextInputType.visiblePassword,
                           controller: password,
                           decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                              Icons.password,
+                              color: Colors.white,
+                            ),
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
@@ -148,7 +156,7 @@ class _logIn extends State<logIn> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Menu()),
+                                        builder: (context) => homeScreen()),
                                   );
                                 }
                               }

@@ -13,65 +13,69 @@ class Menu extends StatefulWidget {
 }
 
 class _Menu extends State<Menu> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  final List<Widget> _widgetOptions = <Widget>[
-    homeScreen(),
-    viewChat(),
-    Results(),
-    EditProfilePage(),
-    logIn(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 4) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => logIn()));
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.blue[900],
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.chat),
-            label: 'Chat',
-            backgroundColor: Colors.blue[900],
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.grid_view),
-            label: 'Results',
-            backgroundColor: Colors.blue[900],
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.edit),
-            label: 'Edit Profile',
-            backgroundColor: Colors.blue[900],
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.logout),
-            label: 'Log Out',
-            backgroundColor: Colors.blue[900],
-          ),
+    return Drawer(
+      backgroundColor: Colors.blue[900],
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => homeScreen()),
+                );
+              }),
+          ListTile(
+              leading: const Icon(Icons.chat),
+              title: const Text('chat'),
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => viewChat()),
+                );
+              }),
+          ListTile(
+              leading: const Icon(Icons.grid_view),
+              title: const Text('Results'),
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Results()),
+                );
+              }),
+          ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('editprofile'),
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditProfilePage()),
+                );
+              }),
+          ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Logout'),
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => logIn()),
+                );
+              }),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
       ),
     );
   }

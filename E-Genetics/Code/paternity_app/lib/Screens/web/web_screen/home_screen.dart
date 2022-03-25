@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
 
+import 'menu.dart';
+
 class homeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -15,9 +17,9 @@ class _homeScreen extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Menu(),
         backgroundColor: const Color.fromARGB(255, 209, 207, 207),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
           title: const Text(
             'Home Page',
