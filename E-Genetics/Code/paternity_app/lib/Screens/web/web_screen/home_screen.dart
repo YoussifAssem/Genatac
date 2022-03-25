@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
-
 import 'menu.dart';
 
 class homeScreen extends StatefulWidget {
@@ -37,15 +36,16 @@ class _homeScreen extends State<homeScreen> {
             )
           ],
         ),
-        body: const Center(
-          child: Text(
-            'Welcome In Paternity Test \n (Genetics)',
-            style: TextStyle(
-                fontSize: 30,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-                color: Colors.black),
-          ),
+        body: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("images/family-law.png"),
+          )),
+          /* child: const TextField(
+              decoration:
+                 // InputDecoration(fillColor: Colors.green, filled: true),
+            )*/
         ));
   }
 }
