@@ -45,7 +45,11 @@ class Relevance:
   
   def getDone(self):
       return self._done  
-  
+  def getProbability(self):
+    sumSimilar = len(self._done['similarID']) + len(self._done['notSimilarID'])
+    total = len(self._done['similarID']) / sumSimilar  
+    return total * 100
+
 relevances = pd.read_csv('../DataSets/PaternityTest/relevance.csv')
 obj = Relevance(relevances)
 done = obj.getDone()   
@@ -54,3 +58,5 @@ print('NOT Similar ID', done['notSimilarID'][0:5])
 
 print('No of people Related to this Family', len(done['similarID']))
 print('No of people is Not Related to this Family', len(done['notSimilarID']))
+
+print('Probability of father', obj.getProbability())
