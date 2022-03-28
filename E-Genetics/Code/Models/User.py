@@ -119,46 +119,46 @@ class User:
 
     '''Similar rs numbers fit the rule'''
     def getRsNumberSimilar(self):
-     return self.__pT.getRsNumberSimilar()
+     return self.__pT.getPaternityTest()['rsNumberSimilar']
     '''Alleles of father that fit the rule'''
     def getFatherSimilar(self):
-     return self.__pT.getFatherSimilar()
+     return self.__pT.getPaternityTest()['father']
     '''Alleles of Mother that fit the rule'''
     def getMotherSimilar(self):
-     return self.__pT.getMotherSimilar()
+     return self.__pT.getPaternityTest()['mother']
     '''Alleles of Child that fit the rule'''
     def getChildSimilar(self):
-     return self.__pT.getChildSimilar()
+     return self.__pT.getPaternityTest()['child']
     '''Rs Numbers of father does not fit the rule''' 
     def getRsNumberFather(self):
-     return self.__pT.getRsNumberFather()
+     return self.__pT.getPaternityTest()['fatherNotSimilarRs']
     '''Rs Numbers of mother does not fit the rule''' 
     def getRsNumberMother(self):
-     return self.__pT.getRsNumberMother()
+     return self.__pT.getPaternityTest()['motherNotSimilarRs']
     '''Get Alleles of father does not fit the rule'''
     def getFatherNotSimilar(self):
-     return self.__pT.getFatherNotSimilar()
+     return self.__pT.getPaternityTest()['notFather']
     '''Get Alleles of Mother does not fit the rule'''
     def getMotherNotSimilar(self):
-     return self.__pT.getMotherNotSimilar()
+     return self.__pT.getPaternityTest()['notMother']
     '''Get Alleles of child does not fit the rule with father'''
     def getChildNotSimilarWithFather(self):
-     return self.__pT.getChildNotSimilarWithFather()
+     return self.__pT.getPaternityTest()['chFather']
     '''Get Alleles of child does not fit the rule with Mother'''
     def getChildNotSimilarWithMother(self):
-     return self.__pT.getChildNotSimilarWithMother()
+     return self.__pT.getPaternityTest()['chMother']
     '''Get Chromosomes Fit Father'''   
     def getChromosomesFitFather(self):
-     return self.__pT.getChromosomesFitFather()
+     return self.__pT.getPaternityTest()['chromosomeFitFather']
     '''Get Chromosomes Fit Mother'''   
     def getChromosomesFitMother(self):
-     return self.__pT.getChromosomesFitMother()
+     return self.__pT.getPaternityTest()['chromosomeFitMother']
     '''Get Chromosomes Not Fit Father'''   
     def getChromosomesNotFitFather(self):
-     return self.__pT.getChromosomesNotFitFather()
+     return self.__pT.getPaternityTest()['chromosomeNotFitFather']
     '''Get Chromosomes Not Fit Mother'''   
     def getChromosomesNotFitMother(self):
-     return self.__pT.getChromosomesNotFitMother()
+     return self.__pT.getPaternityTest()['chromosomeNotFitMother']
   
     '''Calculate prob Father'''
     def calculateProbability(self):
