@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import hashlib
 import os
-from turtle import bgcolor
 from Models.User import User
 from PIL import ImageTk
 from PIL import Image  
@@ -118,7 +117,7 @@ def password_not_recognised():
     password_not_recog_screen.title("Success")
     password_not_recog_screen.geometry("150x100")
     Label(password_not_recog_screen, text="Invalid Password ").pack()
-    Button(password_not_recog_screen, text="OK", command=delete_password_not_recognised).pack()
+   
 
 # Designing popup for user not found
  

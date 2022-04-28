@@ -1,29 +1,32 @@
 #from ast import For
 #from msilib import sequence
 from difflib import SequenceMatcher
-from msilib import sequence
+
 from typing import Pattern
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqFeature import SeqFeature, FeatureLocation
-
-f= open("23.txt","w+")
-
-
-for record in SeqIO.parse("Homo_sapiens.EGYPT.dna.primary_assembly.fsa", "fasta"):
-  
-  
-  for x in range(60):
-      f.write(record.seq[x])
-
-f1= open("21.txt","w+")
+from dna import ProcessFile
+class Whole:
+  def runAlgorithm(self, fileName):
+    f= open("23.txt","w+")
 
 
-for record in SeqIO.parse("GCA_001292825.2_HS1011_v1.1_genomic.fna", "fasta"):
-  
-  
-  for y in range(60):
-      f1.write(record.seq[y])
+    for record in SeqIO.parse(fileName, "fasta"):
+      for x in range(60):
+          f.write(record.seq[x])
+
+    #f1= open("21.txt","w+")
+
+
+    #for record in SeqIO.parse("GCA_001292825.2_HS1011_v1.1_genomic.fna", "fasta"):
+      
+      
+     # for y in range(60):
+      #    f1.write(record.seq[y])
+    
+  def getSequence(self):
+    return ProcessFile()      
 #li = []
 
 #with open('23.txt') as f:
@@ -81,8 +84,7 @@ for record in SeqIO.parse("GCA_001292825.2_HS1011_v1.1_genomic.fna", "fasta"):
 
     
 
-from dna import ProcessFile
-ProcessFile()
+
 ##print(len(record.seq))
 
 ##for x in range(60):

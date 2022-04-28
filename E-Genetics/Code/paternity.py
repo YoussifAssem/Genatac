@@ -1,7 +1,9 @@
 
+from unicodedata import name
 import pandas as pd
 from Models.User import User
-from tkinter import  StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry, font, messagebox
+from Models.relevance import Relevance
+from tkinter import  StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry,  messagebox
 from PIL import ImageTk
 from PIL import Image  
 from tkinter.filedialog import askopenfile 
@@ -110,8 +112,30 @@ def saveResults():
     messagebox.showerror('Error', 'Length of National ID is Not True')
      
 def open_file():
-   file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')]) 
-   if file is not None:
+   file = askopenfile(mode ='r', filetypes =[('Python Files', '*.csv')])
+   viewScreen = Toplevel(root)
+   viewScreen.title("Report")
+   viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight()))
+      
+   if 'relevance' in file.name:
+      relevance = Relevance(file.name)
+      done = relevance.getDone()
+      Label(viewScreen, text="Report Relevances", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
+      
+      T = Text(viewScreen, height=400, width=200, bg='white', fg='black', font='Helvetica 18 bold')
+      T.tag_configure("tag_name", justify='center')
+      T.tag_config('warningColor', foreground='red')
+        
+      T.insert(END, 'Similar ID: {}'.format(done['similarID'][0:5]))
+      T.insert(END, '\nNOT Similar ID: {}'.format(done['notSimilarID'][0:5]))
+      T.insert(END, '\nNo of people Related to this Family: {}'.format(len(done['similarID'])), 'warningColor')
+      T.insert(END, '\nNo of people is Not Related to this Family: {}'.format(len(done['notSimilarID'])), 'warningColor')
+      T.insert(END, '\nProbability of father: {}'.format(relevance.getProbability()), 'warningColor')
+      T.tag_add("tag_name", "1.0", "end")
+      T.config(state='disabled')
+      T.pack(pady=200, padx=500)
+      
+   else:
         data = pd.read_csv(file.name)
         obj.Test(data['father'], data['mother'], data['child2'], data['combine'], data['chromosome'])
         '''Similar Rs Numbers fit the rule'''
@@ -155,9 +179,6 @@ def open_file():
         chroNotMother = list(dict.fromkeys(chroNotMother))
       
        
-        viewScreen = Toplevel(root)
-        viewScreen.title("Report")
-        viewScreen.geometry("%dx%d" % (root.winfo_screenwidth(), root.winfo_screenheight())) 
         Label(viewScreen, text="Report Rs Numbers", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
         global nationalID, caseNumber
         nationalID = StringVar()
@@ -212,40 +233,13 @@ def open_file():
         T.insert(END, "\nDf Mother: {}".format(mother[0:5]), 'warningColor')
         T.insert(END, "\nDf Child: {}".format(chMother[0:5]), 'warningColor')
         T.insert(END, "\n----------------------------------------")
-        T.insert(END, "\nSo, The Probability this may be the Fathe: {}".format(obj.calculateProbability()[0]), 'probColor')
+        T.insert(END, "\nSo, The Probability this may be the Father: {}".format(obj.calculateProbability()[0]), 'probColor')
         T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]), 'probColor')
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
         T.pack(pady=200, padx=500)
         
-        '''
-        print('The Number of rsNumbers', len(rsSimilar)+ len(rsFather)+len(rsMother)-4)
-        print("\nThe Number of Chromosomes fit the rule: ", len(chroFather)+ len(chroMother))
-        print("\nFather Chromosomes: ", chroFather[0:5])
-        print("\nMother Chromosomes: ", chroMother[0:5])
-        print("\n\nThe Number of  Chromosomes Not fit the rule: ", len(chroNotFather)+ len(chroNotMother))
-        print("\nFather Chromosomes: ", chroNotFather[0:5])
-        print("\nMother Chromosomes: ", chroNotMother[0:5])
-        print('\n\nThe Number of rsNumbers fit the rule', len(rsSimilar))
-        print('The Similar rsNumber', rsSimilar[0:5])  
-        print('Father: ', fatherSimilar[0:5])
-        print('Child', childSimilar[0:5])
-        print('Mother', motherSimilar[0:5])
-        print('\n\nDifference between Father and Child')
-        print('The Number of rsNumbers does not fit the rule child with father', len(rsFather))
-        print('Df rsNumber', rsFather[0:5])
-        print('Df Father', father[0:5])
-        print('Df Child', chFather[0:5])
-        print('\n\nDifference between Mother and Child')
-        print('The Number of rsNumbers does not fit the rule child with mother', len(rsMother))
-        print('Df rsNumber', rsMother[0:5])
-        print('Df Child', chMother[0:5])
-        print('Df Mother', mother[0:5])
-        Returns the probability this may be the father
-        print("So, The Probability this may be the Father: ", obj.calculateProbability()[0])
-        Returns the probability this may not be the father
-        print("So, The Probability this may Not be the Father: ", obj.calculateProbability()[1])
-        '''
+        
 def viewWholeGenome(seq):
         viewScreen = Toplevel(root)
         viewScreen.title("Report")
@@ -279,9 +273,9 @@ def viewWholeGenome(seq):
 def wholeGenome():
   file = askopenfile(mode ='r', filetypes =[('Python Files', '*.fsa')]) 
   if file is not None:
-     wG = Whole()
-     wG.runAlgorithm(name=file.name)
-     viewWholeGenome(wG.getSequence())
+    wG = Whole()
+    wG.runAlgorithm(file.name)
+    viewWholeGenome(wG.getSequence())
 
 if __name__ == "__main__":
   obj = User()
