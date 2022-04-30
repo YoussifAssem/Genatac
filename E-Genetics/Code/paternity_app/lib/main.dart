@@ -2,19 +2,24 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+//TO RUN WEB REMOVE THESES
+/*
 import 'Screens/web/web_screen/splash_screen.dart';
-/*import 'Screens/splash_screen.dart';*/
 import 'Screens/web/web_screen/login_screen.dart';
-/*import 'Screens/login_screen.dart';*/
+*/
+//MOBILE SCREENS
+import 'Screens/splash_screen.dart';
+import 'Screens/login_screen.dart';
 
 //import 'Screens/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //To Run Mobile App remove this comment and run
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 //To Run Web App PLEASE if you will run the web RUN WITHOUT DEBUGGING remove this comment and run
 
+/* 
   await Firebase.initializeApp(
       options: const FirebaseOptions(
     apiKey: "AIzaSyCmuZGl5AWSah3INjLhA7fpZhXXMMtT1wk",
@@ -22,6 +27,7 @@ Future<void> main() async {
     messagingSenderId: "86992490246",
     projectId: "paternitytest-7cb8b",
   ));
+  */
   runApp(MyApp());
 }
 
