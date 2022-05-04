@@ -124,9 +124,11 @@ def open_file():
       
       T = Text(viewScreen, height=400, width=200, bg='white', fg='black', font='Helvetica 18 bold')
       T.tag_configure("tag_name", justify='center')
+      T.tag_config('related', foreground='Green')
+      
       T.tag_config('warningColor', foreground='red')
         
-      T.insert(END, 'Similar ID: {}'.format(done['similarID'][0:5]))
+      T.insert(END, '\n\n\n\nSimilar ID: {}'.format(done['similarID'][0:5]), 'related')
       T.insert(END, '\nNOT Similar ID: {}'.format(done['notSimilarID'][0:5]))
       T.insert(END, '\nNo of people Related to this Family: {}'.format(len(done['similarID'])), 'warningColor')
       T.insert(END, '\nNo of people is Not Related to this Family: {}'.format(len(done['notSimilarID'])), 'warningColor')
