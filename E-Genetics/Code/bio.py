@@ -9,13 +9,13 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from dna import ProcessFile
 class Whole:
   def runAlgorithm(self, fileName):
-    f= open("23.txt","w+")
-
-
-    for record in SeqIO.parse(fileName, "fasta"):
-      for x in range(60):
+    f= open("dau.txt","w+")
+    for record in SeqIO.parse('Datasets\daughter1.fq', 'fastq'):
+        for x in range(len(record.seq)):
           f.write(record.seq[x])
-
+          if x== len(record.seq):
+            break
+ 
     #f1= open("21.txt","w+")
 
 
