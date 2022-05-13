@@ -37,7 +37,7 @@ class SplashState extends State<Splash> {
               ),
             ),
             Image.asset(
-              'images/family-law.png',
+              'Images/family-law.png',
               height: 120,
             ),
             const SizedBox(

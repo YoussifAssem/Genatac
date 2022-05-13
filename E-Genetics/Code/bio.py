@@ -6,7 +6,7 @@ from typing import Pattern
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqFeature import SeqFeature, FeatureLocation
-from dna import ProcessFile
+#from dna import ProcessFile
 class Whole:
   def runAlgorithm(self, fileName):
     f= open("dau.txt","w+")
