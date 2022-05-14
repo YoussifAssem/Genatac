@@ -1,6 +1,0 @@
-to run the project run following comands in the root folder of the website 
-for any inquiry please contact ahmed gamal :) :
-
-set FLASK_APP=project
-set FLASK_DEBUG=1
-flask run
