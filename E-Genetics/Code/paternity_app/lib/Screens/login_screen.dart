@@ -21,136 +21,139 @@ class _logIn extends State<logIn> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.blue[900],
-          title: const Text(
-            'Log In',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        body: ListView(
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            const Center(
-              child: Text(
-                'Welcome ',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 30),
+        child: Scaffold(
+            backgroundColor: const Color.fromARGB(255, 38, 54, 80),
+            /* appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: const Color.fromARGB(255, 25, 26, 25),
+              title: const Text(
+                'Log In',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
               ),
-            ),
-            const SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[900]),
-                ),
-                child: const Text('Sign Up Here'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignUp()),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            TextFormField(
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-              keyboardType: TextInputType.emailAddress,
-              controller: email,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(
-                  Icons.email,
-                  color: Colors.white,
-                ),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.blue[900],
-                hintText: 'Email',
-                hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            TextFormField(
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-              //keyboardType: TextInputType.visiblePassword,
-              controller: password,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(
-                  Icons.password,
-                  color: Colors.white,
-                ),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.blue[900],
-                hintText: 'Password',
-                hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 50),
-            SizedBox(
-                height: 45,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 100, right: 100),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.blue[900]),
-                    ),
-                    child: const Text('Log In'),
-                    onPressed: () async {
-                      if (email.text == '' || password.text == '') {
-                        text = 'Error, Please fill all requirements';
-                        showAlertDialog(context);
-                      } else if (!email.text.contains('@')) {
-                        text = 'Email format is not true';
-                        showAlertDialog(context);
-                      } else {
-                        if (await user.login(email.text, password.text) !=
-                            'Done') {
-                          text = 'Error, Email or Password is incorrect';
-                          showAlertDialog(context);
-                        } else {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => Menu()),
-                          );
-                        }
-                      }
-                    },
+            ),*/
+            body: ListView(children: [
+              Container(
+                padding: const EdgeInsets.only(left: 40, top: 25, right: 40),
+                child: GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      const Center(
+                        child: Text(
+                          "Log In",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 30),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Center(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromARGB(255, 25, 26, 25)),
+                          ),
+                          child: const Text('Sign Up Here'),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SignUp()),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      TextFormField(
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        controller: email,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
+                          filled: true,
+                          hintText: 'Email',
+                          hintStyle:
+                              TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      TextFormField(
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                        //keyboardType: TextInputType.visiblePassword,
+                        controller: password,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.password,
+                            color: Colors.white,
+                          ),
+                          filled: true,
+                          hintText: 'Password',
+                          hintStyle:
+                              TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 50),
+                      SizedBox(
+                          height: 45,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 40, right: 80),
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color.fromARGB(255, 25, 26, 25)),
+                              ),
+                              child: const Text('Log In'),
+                              onPressed: () async {
+                                if (email.text == '' || password.text == '') {
+                                  text = 'Error, Please fill all requirements';
+                                  showAlertDialog(context);
+                                } else if (!email.text.contains('@')) {
+                                  text = 'Email format is not true';
+                                  showAlertDialog(context);
+                                } else {
+                                  if (await user.login(
+                                          email.text, password.text) !=
+                                      'Done') {
+                                    text =
+                                        'Error, Email or Password is incorrect';
+                                    showAlertDialog(context);
+                                  } else {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Menu()),
+                                    );
+                                  }
+                                }
+                              },
+                            ),
+                          ))
+                    ],
                   ),
-                ))
-          ],
-        ),
-      ),
-    );
+                ),
+              )
+            ])));
   }
 
   showAlertDialog(
