@@ -55,21 +55,7 @@ class _logIn extends State<logIn> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Center(
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 25, 26, 25)),
-                          ),
-                          child: const Text('Sign Up Here'),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => SignUp()),
-                            );
-                          },
-                        ),
-                      ),
+                      
                       const SizedBox(
                         height: 50,
                       ),
@@ -123,7 +109,8 @@ class _logIn extends State<logIn> {
                                 backgroundColor: MaterialStateProperty.all(
                                     const Color.fromARGB(255, 25, 26, 25)),
                               ),
-                              child: const Text('Log In'),
+                              child: const Text('Log In',
+                               style: TextStyle(fontSize: 19),),
                               onPressed: () async {
                                 if (email.text == '' || password.text == '') {
                                   text = 'Error, Please fill all requirements';
@@ -148,7 +135,34 @@ class _logIn extends State<logIn> {
                                 }
                               },
                             ),
-                          ))
+                          )),
+                          const SizedBox(height: 30,),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10, right: 40),
+                            child: Text("Don't have an account?",
+                            style:TextStyle(color: Colors.white,
+                            fontSize: 15),),
+                          
+                          ),
+                          const SizedBox(height: 1,),
+                          Padding(
+                        padding: const EdgeInsets.only(left: 0 , right: 40),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromARGB(255, 25, 26, 25)),
+                          ),
+                          child: const Text('Sign Up Here',
+                          style:TextStyle(fontSize: 19) ,),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SignUp()),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
