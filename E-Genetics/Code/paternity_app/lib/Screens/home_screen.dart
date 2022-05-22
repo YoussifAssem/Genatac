@@ -38,7 +38,7 @@ class _homeScreen extends State<homeScreen> {
           constraints: const BoxConstraints.expand(),
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("Images/d7ka4.png"),
+                  image: AssetImage("images/family-law.png"),
                   fit: BoxFit.cover)),
           /* child: const TextField(
               decoration:
