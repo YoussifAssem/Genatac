@@ -25,7 +25,8 @@ class _Results extends State<Results> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
+        /*
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.blue[900],
@@ -44,162 +45,159 @@ class _Results extends State<Results> {
               ),
             )
           ],
-        ),
-        body: ListView(
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Center(
-              child: TextFormField(
+        ),*/
+        body: ListView(children: [
+          Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              const Center(
+                child: Text(
+                  "Check Results",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 30),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
                 controller: userName,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
                     Icons.admin_panel_settings,
                     color: Colors.white,
                   ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    borderSide: BorderSide.none,
-                  ),
                   filled: true,
-                  fillColor: Colors.blue[900],
                   hintText: 'Enter Admin User Name',
-                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
+                  hintStyle: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: TextFormField(
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-                controller: caseID,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.cases,
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: TextFormField(
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 18,
                     color: Colors.white,
                   ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    borderSide: BorderSide.none,
+                  controller: caseID,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.cases,
+                      color: Colors.white,
+                    ),
+                    filled: true,
+                    hintText: 'Enter Case Number',
+                    hintStyle: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                  filled: true,
-                  fillColor: Colors.blue[900],
-                  hintText: 'Enter Case Number',
-                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: TextFormField(
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-                controller: nationalID,
-                maxLength: 14,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.numbers,
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: TextFormField(
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 18,
                     color: Colors.white,
                   ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    borderSide: BorderSide.none,
+                  controller: nationalID,
+                  maxLength: 14,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.numbers,
+                      color: Colors.white,
+                    ),
+                    filled: true,
+                    hintText: 'Enter National ID',
+                    hintStyle: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                  filled: true,
-                  fillColor: Colors.blue[900],
-                  hintText: 'Enter National ID',
-                  hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.blue[900]),
-                  ),
-                  child: const Text('View Results'),
-                  onPressed: () async {
-                    if (caseID.text == '' || userName.text == '') {
-                      text = 'Error, Please fill all requirements';
-                      showAlertDialog(context);
-                    } else if (nationalID.text.length != 14) {
-                      text = 'Error, Ntional ID is Not Exist';
-                      showAlertDialog(context);
-                    } else {
-                      try {
-                        DocumentReference ref = FirebaseFirestore.instance
-                            .collection('adminUsers')
-                            .doc(userName.text)
-                            .collection('Results')
-                            .doc(sha256
-                                .convert(utf8.encode(nationalID.text))
-                                .toString());
-                        FirebaseFirestore.instance
-                            .runTransaction((transaction) async {
-                          DocumentSnapshot snapShot =
-                              await transaction.get(ref);
-                          if (snapShot.exists) {
-                            if (snapShot['ID'] ==
-                                    sha256
-                                        .convert(utf8.encode(nationalID.text))
-                                        .toString() &&
-                                snapShot['caseNumber'] ==
-                                    sha256
-                                        .convert(utf8.encode(caseID.text))
-                                        .toString()) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => viewResults(
-                                          userName: userName.text,
-                                          caseNumber: sha256
-                                              .convert(utf8.encode(caseID.text))
-                                              .toString(),
-                                          nationalID: sha256
-                                              .convert(
-                                                  utf8.encode(nationalID.text))
-                                              .toString(),
-                                        )),
-                              );
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 25, 26, 25)),
+                    ),
+                    child: const Text('View Results'),
+                    onPressed: () async {
+                      if (caseID.text == '' || userName.text == '') {
+                        text = 'Error, Please fill all requirements';
+                        showAlertDialog(context);
+                      } else if (nationalID.text.length != 14) {
+                        text = 'Error, Ntional ID is Not Exist';
+                        showAlertDialog(context);
+                      } else {
+                        try {
+                          DocumentReference ref = FirebaseFirestore.instance
+                              .collection('adminUsers')
+                              .doc(userName.text)
+                              .collection('Results')
+                              .doc(sha256
+                                  .convert(utf8.encode(nationalID.text))
+                                  .toString());
+                          FirebaseFirestore.instance
+                              .runTransaction((transaction) async {
+                            DocumentSnapshot snapShot =
+                                await transaction.get(ref);
+                            if (snapShot.exists) {
+                              if (snapShot['ID'] ==
+                                      sha256
+                                          .convert(utf8.encode(nationalID.text))
+                                          .toString() &&
+                                  snapShot['caseNumber'] ==
+                                      sha256
+                                          .convert(utf8.encode(caseID.text))
+                                          .toString()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => viewResults(
+                                            userName: userName.text,
+                                            caseNumber: sha256
+                                                .convert(
+                                                    utf8.encode(caseID.text))
+                                                .toString(),
+                                            nationalID: sha256
+                                                .convert(utf8
+                                                    .encode(nationalID.text))
+                                                .toString(),
+                                          )),
+                                );
+                              } else {
+                                text = 'Error, Data Is Not Exist';
+                                showAlertDialog(context);
+                              }
                             } else {
-                              text = 'Error, Data Is Not Exist';
+                              text = 'Error, User Name Is Not Exist';
                               showAlertDialog(context);
                             }
-                          } else {
-                            text = 'Error, User Name Is Not Exist';
-                            showAlertDialog(context);
-                          }
-                        });
-                      } catch (e) {
-                        text = 'Error, Exception error occured';
-                        showAlertDialog(context);
+                          });
+                        } catch (e) {
+                          text = 'Error, Exception error occured';
+                          showAlertDialog(context);
+                        }
                       }
-                    }
-                  }),
-            ),
-          ],
-        ));
+                    }),
+              ),
+            ],
+          )
+        ]));
   }
 
   showAlertDialog(

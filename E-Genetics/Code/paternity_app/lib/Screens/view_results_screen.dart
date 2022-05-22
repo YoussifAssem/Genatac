@@ -42,9 +42,9 @@ class _viewResults extends State<viewResults> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         appBar: AppBar(
-          backgroundColor: Colors.blue[900],
+          backgroundColor: const Color.fromARGB(255, 38, 54, 80),
           title: const Text(
             'Results',
           ),
@@ -93,14 +93,14 @@ class _viewResults extends State<viewResults> {
                         fontSize: 30,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green),
+                        color: Colors.white),
                   ),
                   const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.only(right: 20, left: 20),
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
-                      color: Colors.green,
+                      color: Colors.white,
                     ),
                     child: ListTile(
                       title: Text(
@@ -113,19 +113,19 @@ class _viewResults extends State<viewResults> {
                   ),
                   const SizedBox(height: 80),
                   const Text(
-                    '\t\t\t\t\t\t\t\t\tProbability of Child \n that Not related to this Father',
+                    '\t\t\t\t\tProbability of Child \n that Not related to this \n Father',
                     style: TextStyle(
                         fontSize: 30,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                        color: Colors.white),
                   ),
                   const SizedBox(height: 30),
                   Container(
                     margin: const EdgeInsets.only(right: 20, left: 20),
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
-                      color: Colors.red,
+                      color: Colors.white,
                     ),
                     child: ListTile(
                       title: Text(
