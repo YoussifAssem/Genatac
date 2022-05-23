@@ -76,7 +76,7 @@ class _viewResults extends State<viewResults> {
                 child: Text(
                   "\t\t\t\t\t\t\tAdmin Name You Entered Is Not True \n May be Admin Not Submit the data until now",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),

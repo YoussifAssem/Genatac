@@ -16,7 +16,7 @@ class _Menu extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.blue[900],
+      backgroundColor: const Color.fromARGB(255, 38, 54, 80),
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[

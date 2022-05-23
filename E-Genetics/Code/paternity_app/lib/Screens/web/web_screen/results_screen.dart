@@ -28,15 +28,15 @@ class _Results extends State<Results> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Menu(),
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         appBar: AppBar(
-          backgroundColor: Colors.blue[900],
+          backgroundColor: const Color.fromARGB(255, 38, 54, 80),
           title: const Text(
-            'Results',
+            "Check Results",
           ),
           actions: [
             Container(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: Text(
                 user.Email,
                 style: const TextStyle(
@@ -59,29 +59,23 @@ class _Results extends State<Results> {
                       const SizedBox(
                         height: 80,
                       ),
+                      const SizedBox(height: 20),
                       Center(
                         child: TextFormField(
-                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                           controller: userName,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.admin_panel_settings,
                               color: Colors.white,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
                             filled: true,
-                            fillColor: Colors.blue[900],
                             hintText: 'Enter Admin User Name',
-                            hintStyle: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                       ),
@@ -90,27 +84,20 @@ class _Results extends State<Results> {
                       ),
                       Center(
                         child: TextFormField(
-                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                           controller: caseID,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.cases,
                               color: Colors.white,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
                             filled: true,
-                            fillColor: Colors.blue[900],
                             hintText: 'Enter Case Number',
-                            hintStyle: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                       ),
@@ -119,28 +106,21 @@ class _Results extends State<Results> {
                       ),
                       Center(
                         child: TextFormField(
-                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                           controller: nationalID,
                           maxLength: 14,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.numbers,
                               color: Colors.white,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
                             filled: true,
-                            fillColor: Colors.blue[900],
                             hintText: 'Enter National ID',
-                            hintStyle: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                       ),
@@ -150,8 +130,8 @@ class _Results extends State<Results> {
                       Center(
                         child: ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blue[900]),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 25, 26, 25)),
                             ),
                             child: const Text('View Results'),
                             onPressed: () async {

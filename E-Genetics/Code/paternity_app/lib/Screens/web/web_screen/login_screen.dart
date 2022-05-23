@@ -22,7 +22,7 @@ class _logIn extends State<logIn> {
   Widget build(BuildContext context) {
     return Center(
         child: Scaffold(
-            backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+            backgroundColor: const Color.fromARGB(255, 38, 54, 80),
             /*  appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Colors.blue[900],
@@ -47,11 +47,11 @@ class _logIn extends State<logIn> {
                         ),
                         const Center(
                           child: Text(
-                            'Welcome',
+                            'Log In',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic,
+                                fontStyle: FontStyle.normal,
                                 fontSize: 30),
                           ),
                         ),
@@ -59,8 +59,8 @@ class _logIn extends State<logIn> {
                         Center(
                           child: ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blue[900]),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 25, 26, 25)),
                             ),
                             child: const Text('Sign Up Here'),
                             onPressed: () {
@@ -76,56 +76,40 @@ class _logIn extends State<logIn> {
                           height: 50,
                         ),
                         TextFormField(
-                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                           keyboardType: TextInputType.emailAddress,
                           controller: email,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.email,
                               color: Colors.white,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Colors.blue[900],
                             hintText: 'Email',
-                            hintStyle: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                         const SizedBox(
                           height: 50,
                         ),
                         TextFormField(
-                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                           //keyboardType: TextInputType.visiblePassword,
                           controller: password,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.password,
                               color: Colors.white,
                             ),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Colors.blue[900],
                             hintText: 'Password',
-                            hintStyle: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                            hintStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
                           obscureText: true,
                         ),
@@ -134,8 +118,8 @@ class _logIn extends State<logIn> {
                           height: 45,
                           child: ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blue[900]),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 25, 26, 25)),
                             ),
                             child: const Text('Log In'),
                             onPressed: () async {

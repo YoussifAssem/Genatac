@@ -23,9 +23,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Menu(),
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         appBar: AppBar(
-          backgroundColor: Colors.blue[900],
+          backgroundColor: const Color.fromARGB(255, 38, 54, 80),
           title: const Text(
             'Edit Profile',
           ),
@@ -52,16 +52,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 },
                 child: Column(
                   children: [
-                    const Center(
-                      child: Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 30),
-                      ),
-                    ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -73,7 +63,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
                       autocorrect: true,
                       controller: email,
                       decoration: InputDecoration(
@@ -81,13 +70,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Icons.email,
                             color: Colors.white,
                           ),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide.none,
-                          ),
                           filled: true,
-                          fillColor: Colors.blue[900],
                           hintText: user.Email,
                           hintStyle: const TextStyle(
                             fontSize: 18,
@@ -100,23 +83,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
                       autocorrect: true,
                       controller: password,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(
                             Icons.password,
                             color: Colors.white,
                           ),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide.none,
-                          ),
                           filled: true,
-                          fillColor: Colors.blue[900],
                           hintText: 'Old Or New Password',
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           )),
@@ -128,23 +104,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
                       autocorrect: true,
                       controller: confirmPassword,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(
                             Icons.password,
                             color: Colors.white,
                           ),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide.none,
-                          ),
                           filled: true,
-                          fillColor: Colors.blue[900],
                           hintText: 'Confirm Password',
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           )),
@@ -167,8 +136,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   color: Colors.white),
                             ),
                             style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.blue[900]),
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 25, 26, 25)),
                             ),
                             onPressed: () async {
                               if (email.text == '' ||

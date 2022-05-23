@@ -17,9 +17,9 @@ class _homeScreen extends State<homeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Menu(),
-        backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         appBar: AppBar(
-          backgroundColor: Colors.blue[900],
+          backgroundColor: const Color.fromARGB(255, 38, 54, 80),
           title: const Text(
             'Home Page',
           ),
