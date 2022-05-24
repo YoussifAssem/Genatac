@@ -56,22 +56,7 @@ class _logIn extends State<logIn> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Center(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  const Color.fromARGB(255, 25, 26, 25)),
-                            ),
-                            child: const Text('Sign Up Here'),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUp()),
-                              );
-                            },
-                          ),
-                        ),
+                        
                         const SizedBox(
                           height: 50,
                         ),
@@ -146,7 +131,35 @@ class _logIn extends State<logIn> {
                               }
                             },
                           ),
-                        )
+                        ),
+                        const SizedBox(height: 30,),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 30, right: 40),
+                            child: Text("Don't have an account?",
+                            style:TextStyle(color: Colors.white,
+                            fontSize: 15),),
+                          
+                          ),
+                          const SizedBox(height: 20,),
+                          Center(
+                            
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color.fromARGB(255, 25, 26, 25)),
+                            ),
+                            child: const Text('Sign Up Here'),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUp()),
+                              );
+                            },
+                          ),
+                        ),
+                          
                       ],
                     ),
                   ),

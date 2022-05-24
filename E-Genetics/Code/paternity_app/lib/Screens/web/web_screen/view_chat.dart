@@ -3,7 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
-import 'package:paternity_app/Screens/chat_screen.dart';
+import 'package:paternity_app/Screens/splash_screen.dart';
+import 'package:paternity_app/Screens/web/web_screen/chat_screen.dart';
 
 import 'menu.dart';
 
@@ -20,11 +21,11 @@ class _viewChat extends State<viewChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Menu(),
-      backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+      backgroundColor: const Color.fromARGB(255, 38, 54, 80),
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         title: const Text(
-          'View Users',
+          'Admin Users',
         ),
         actions: [
           Container(
@@ -44,21 +45,26 @@ class _viewChat extends State<viewChat> {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
-              child: Text("There Are a problem in the system"),
+              //child: Text("There Are a problem in the system"),
+              child: Splash(),
             );
           }
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               return Column(
                   children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 Container(
-                  margin: const EdgeInsets.only(right: 400, left: 400),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                    color: Colors.blue[900],
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),      
+                  margin: const EdgeInsets.only(right: 10, left: 10,),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
                   ),
                   child: ListTile(
+                   leading: const CircleAvatar(radius: 30,
+                   backgroundImage: AssetImage("images/contact.png"),
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -71,11 +77,11 @@ class _viewChat extends State<viewChat> {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
-                          color: Colors.white),
+                          color: Colors.black),
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 0),
               ].toList());
             }).toList(),
           );
