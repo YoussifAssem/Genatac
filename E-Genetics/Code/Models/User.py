@@ -1,4 +1,3 @@
-from xmlrpc.client import DateTime
 from .paternityTest import paternityTest
 import firebase_admin
 from firebase_admin import credentials, firestore
