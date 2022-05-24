@@ -72,7 +72,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
+                      
                       autocorrect: true,
                       controller: email,
                       decoration: InputDecoration(
@@ -93,7 +93,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
+                      
                       autocorrect: true,
                       controller: password,
                       decoration: const InputDecoration(
@@ -115,7 +115,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         fontSize: 18,
                         color: Colors.white,
                       ),
-                      textAlign: TextAlign.center,
+                      
                       autocorrect: true,
                       controller: confirmPassword,
                       decoration: const InputDecoration(

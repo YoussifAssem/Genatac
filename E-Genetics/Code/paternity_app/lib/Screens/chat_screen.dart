@@ -27,9 +27,9 @@ class _Chat extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+      backgroundColor: const Color.fromARGB(255, 38, 54, 80),
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         title: Text(
           _title,
         ),
@@ -75,7 +75,7 @@ class _Chat extends State<Chat> {
                           vertical: 10,
                           horizontal: 20,
                         ),
-                        fillColor: Colors.white,
+                        
                         hintText: 'Write your message here...',
                         border: InputBorder.none,
                       ),
@@ -93,10 +93,10 @@ class _Chat extends State<Chat> {
                       });
                       message.clear(); //to clear text feild
                     },
-                    child: Text(
+                    child: const Text(
                       'send',
                       style: TextStyle(
-                        color: Colors.blue[800],
+                        color: Color.fromARGB(255, 38, 54, 80),
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -196,7 +196,7 @@ class messageline extends StatelessWidget {
           children: [
             Text(
               '$sender',
-              style: const TextStyle(fontSize: 12, color: Colors.black),
+              style: const TextStyle(fontSize: 12, color: Colors.white),
             ),
             Material(
               elevation: 5,
@@ -213,9 +213,9 @@ class messageline extends StatelessWidget {
                       bottomRight: Radius.circular(30),
                     ),
               color: isme
-                  ? Colors.blue[800]
+                  ? Colors.white
                   : Colors
-                      .blue[800], //check the user to change the message color
+                      .white, //check the user to change the message color
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -223,9 +223,8 @@ class messageline extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 15,
                         color: isme
-                            ? Colors.white
-                            : Colors
-                                .white)), //check the user to change the text color
+                            ? const Color.fromARGB(255, 38, 54, 80)
+                            : const Color.fromARGB(255, 38, 54, 80))), //check the user to change the text color
               ),
             ),
           ]),

@@ -64,7 +64,7 @@ class _Results extends State<Results> {
               ),
               const SizedBox(height: 20),
               TextFormField(
-                textAlign: TextAlign.center,
+                
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -85,7 +85,7 @@ class _Results extends State<Results> {
               ),
               Center(
                 child: TextFormField(
-                  textAlign: TextAlign.center,
+                  
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,
@@ -107,7 +107,7 @@ class _Results extends State<Results> {
               ),
               Center(
                 child: TextFormField(
-                  textAlign: TextAlign.center,
+                  
                   style: const TextStyle(
                     fontSize: 18,
                     color: Colors.white,

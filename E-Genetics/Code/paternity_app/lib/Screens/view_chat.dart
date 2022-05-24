@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paternity_app/Models/user.dart';
 import 'package:paternity_app/Screens/chat_screen.dart';
+import 'package:paternity_app/Screens/splash_screen.dart';
 
 class viewChat extends StatefulWidget {
   @override
@@ -17,12 +18,12 @@ class _viewChat extends State<viewChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 209, 207, 207),
+      backgroundColor: const Color.fromARGB(255, 38, 54, 80),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue[900],
+        backgroundColor: const Color.fromARGB(255, 38, 54, 80),
         title: const Text(
-          'View Users',
+          'Admin Users',
         ),
         actions: [
           Container(
@@ -37,26 +38,39 @@ class _viewChat extends State<viewChat> {
           )
         ],
       ),
+      
       body: StreamBuilder<QuerySnapshot>(
+        
         stream: FirebaseFirestore.instance.collection('adminUsers').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
-              child: Text("There Are a problem in the system"),
+              //child: Text("There is a problem in the system"),
+              child: Splash(),
             );
           }
+          //mn 2awl hna
+          
           return ListView(
+            padding: const EdgeInsets.only(top : 5,),
             children: snapshot.data!.docs.map((doc) {
               return Column(
+                
+                  
                   children: [
-                const SizedBox(height: 50),
+                    
+                const SizedBox(height: 10,),
                 Container(
-                  margin: const EdgeInsets.only(right: 20, left: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                    color: Colors.blue[900],
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),      
+                  margin: const EdgeInsets.only(right: 10, left: 10,),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
                   ),
                   child: ListTile(
+                    leading: const CircleAvatar(radius: 30,
+                   backgroundImage: AssetImage("images/contact.png"),
+                    ),
                     onTap: () {
                       Navigator.push(
                           context,
@@ -65,15 +79,15 @@ class _viewChat extends State<viewChat> {
                     },
                     title: Text(
                       doc['userName'].toString(),
-                      textAlign: TextAlign.center,
+                      
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
-                          color: Colors.white),
+                          color: Color.fromARGB(255, 38, 54, 80)),
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 0),
               ].toList());
             }).toList(),
           );
