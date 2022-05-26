@@ -140,45 +140,19 @@ def open_file():
    else:
         data = pd.read_csv(file.name)
         obj.Test(data['father'], data['mother'], data['child2'], data['combine'], data['chromosome'])
-        '''Similar Rs Numbers fit the rule'''
-        rsSimilar = obj.getRsNumberSimilar()
-        '''Father Rs Numbers that not Matched with the rule'''
-        rsFather = obj.getRsNumberFather()
-        '''Mothers Rs Numbers that not Matched with the rule'''
-        rsMother = obj.getRsNumberMother() 
-
-     
-        '''Father Rs Numbers Fit the rule'''
-        fatherSimilar =  obj.getFatherSimilar()
-        '''Mother Rs Numbers Fit the rule'''
-        motherSimilar = obj.getMotherSimilar()
-        '''Child Similar with father and mother'''
-        childSimilar = obj.getChildSimilar()
-
-        '''Alleles of father not matched with child'''
-        father = obj.getFatherNotSimilar()
-        '''Alleles of Mother not matched with child'''
-        mother = obj.getMotherNotSimilar()
-        '''Alleles of Child not matched with Father'''
-        chFather = obj.getChildNotSimilarWithFather()
-        '''Alleles of Child not matched with Mother'''
-        chMother = obj.getChildNotSimilarWithMother()
-        '''Chromosomes that fit the rule with Father and child'''
-        chroFather = obj.getChromosomesFitFather()
-        '''Chromosomes that fit the rule with Mother and child'''
-        chroMother = obj.getChromosomesFitMother()
-        '''Chromosomes that not fit the rule between Father and child'''
-        chroNotFather = obj.getChromosomesNotFitFather()
-        '''Chromosomes that not fit the rule between Mother and child'''
-        chroNotMother = obj.getChromosomesNotFitMother()
+        report = obj.getPaternityResults()
         
-        rsSimilar = list(dict.fromkeys(rsSimilar))
-        rsFather = list(dict.fromkeys(rsFather))
-        rsMother = list(dict.fromkeys(rsMother))
-        chroFather = list(dict.fromkeys(chroFather))
-        chroMother = list(dict.fromkeys(chroMother))
-        chroNotFather = list(dict.fromkeys(chroNotFather))
-        chroNotMother = list(dict.fromkeys(chroNotMother))
+        
+        
+   
+        
+        report['rsNumberSimilar'] = list(dict.fromkeys(report['rsNumberSimilar']))
+        report['fatherNotSimilarRs'] = list(dict.fromkeys(report['fatherNotSimilarRs']))
+        report['motherNotSimilarRs'] = list(dict.fromkeys(report['motherNotSimilarRs']))
+        report['chromosomeFitFather'] = list(dict.fromkeys(report['chromosomeFitFather']))
+        report['chromosomeFitMother'] = list(dict.fromkeys(report['chromosomeFitMother']))
+        report['chromosomeNotFitFather'] = list(dict.fromkeys(report['chromosomeNotFitFather']))
+        report['chromosomeNotFitMother'] = list(dict.fromkeys(report['chromosomeNotFitMother']))
       
        
         Label(viewScreen, text="Report Rs Numbers", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
@@ -204,37 +178,45 @@ def open_file():
         T.tag_config('probColor', foreground='black')
        
         
-        T.insert(END, "The Number of rsNumbers: {}".format(len(rsSimilar)+ len(rsFather)+len(rsMother)), 'warningColor')
-        T.insert(END, "\n----------------------------------------")
-        
-        T.insert(END, "\nThe Number of Chromosomes fit the rule: {}".format(len(chroFather)+ len(chroMother)), 'safeColor')
-        T.insert(END, "\nFather Chromosomes: {}".format(chroFather[0:5]), 'safeColor')
-        T.insert(END, "\nMother Chromosomes: {}".format(chroMother[0:5]), 'safeColor')
-        T.insert(END, "\n----------------------------------------")
-        T.insert(END, "\nThe Number of  Chromosomes Not fit the rule: {}".format(len(chroNotFather)+ len(chroNotMother)), 'warningColor')
-        T.insert(END, "\nFather Chromosomes: {}".format(chroNotFather[0:5]), 'warningColor')
-        T.insert(END, "\nMother Chromosomes: {}".format(chroNotMother[0:5]), 'warningColor')
+        T.insert(END, "The Number of rsNumbers: {}".format(len(report['rsNumberSimilar'])+ len(report['fatherNotSimilarRs'])+len(report['motherNotSimilarRs'])), 'warningColor')
         
         T.insert(END, "\n----------------------------------------")
         
-        T.insert(END, "\nThe Number of rsNumbers fit the rule: {}".format(len(rsSimilar)), 'safeColor')
-        T.insert(END, "\nRs Numbers: {}".format(rsSimilar[0:5]), 'safeColor')
-        T.insert(END, "\nFather: {}".format(fatherSimilar[0:5]), 'safeColor')
-        T.insert(END, "\nChild: {}".format(childSimilar[0:5]), 'safeColor')
-        T.insert(END, "\nMother: {}".format(motherSimilar[0:5]), 'safeColor')
+        T.insert(END, "\nThe Number of Chromosomes fit the rule: {}".format(len(report['chromosomeFitFather'])+ len(report['chromosomeFitMother'])), 'safeColor')
+        T.insert(END, "\nFather Chromosomes: {}".format(report['chromosomeFitFather'][0:5]), 'safeColor')
+        T.insert(END, "\nMother Chromosomes: {}".format(report['chromosomeFitMother'][0:5]), 'safeColor')
         
         T.insert(END, "\n----------------------------------------")
-        T.insert(END, "\nThe Number of rsNumbers does not fit the rule child with father: {}".format(len(rsFather)), 'warningColor')
-        T.insert(END, "\nDf rsNumber: {}".format(rsFather[0:5]), 'warningColor')
-        T.insert(END, "\nDf Father: {}".format(father[0:5]), 'warningColor')
-        T.insert(END, "\nDf Child: {}".format(chFather[0:5]), 'warningColor')
+        
+        T.insert(END, "\nThe Number of  Chromosomes Not fit the rule: {}".format(len(report['chromosomeNotFitFather'])+ len(report['chromosomeNotFitMother'])), 'warningColor')
+        T.insert(END, "\nFather Chromosomes: {}".format(report['chromosomeNotFitFather'][0:5]), 'warningColor')
+        T.insert(END, "\nMother Chromosomes: {}".format(report['chromosomeNotFitMother'][0:5]), 'warningColor')
+        
+        T.insert(END, "\n----------------------------------------")
+        
+        T.insert(END, "\nThe Number of rsNumbers fit the rule: {}".format(len(report['rsNumberSimilar'])), 'safeColor')
+        T.insert(END, "\nRs Numbers: {}".format(report['rsNumberSimilar'][0:5]), 'safeColor')
+        
+        T.insert(END, "\nFather: {}".format(report['father'][0:5]), 'safeColor')
+        T.insert(END, "\nChild: {}".format(report['child'][0:5]), 'safeColor')
+        T.insert(END, "\nMother: {}".format(report['mother'][0:5]), 'safeColor')
+        
+        T.insert(END, "\n----------------------------------------")
+        
+        T.insert(END, "\nThe Number of rsNumbers does not fit the rule child with father: {}".format(len(report['fatherNotSimilarRs'])), 'warningColor')
+        T.insert(END, "\nDf rsNumber: {}".format(report['fatherNotSimilarRs'][0:5]), 'warningColor')
+        T.insert(END, "\nDf Father: {}".format(report['notFather'][0:5]), 'warningColor')
+        T.insert(END, "\nDf Child: {}".format(report['chFather'][0:5]), 'warningColor')
        
         T.insert(END, "\n----------------------------------------")
-        T.insert(END, "\nThe Number of rsNumbers does not fit the rule child with mother: {}".format(len(rsMother)), 'warningColor')
-        T.insert(END, "\nDf rsNumber: {}".format(rsMother[0:5]), 'warningColor')
-        T.insert(END, "\nDf Mother: {}".format(mother[0:5]), 'warningColor')
-        T.insert(END, "\nDf Child: {}".format(chMother[0:5]), 'warningColor')
+        
+        T.insert(END, "\nThe Number of rsNumbers does not fit the rule child with mother: {}".format(len(report['motherNotSimilarRs'])), 'warningColor')
+        T.insert(END, "\nDf rsNumber: {}".format(report['motherNotSimilarRs'][0:5]), 'warningColor')
+        T.insert(END, "\nDf Mother: {}".format(report['notMother'][0:5]), 'warningColor')
+        T.insert(END, "\nDf Child: {}".format(report['chMother'][0:5]), 'warningColor')
+        
         T.insert(END, "\n----------------------------------------")
+        
         T.insert(END, "\nSo, The Probability this may be the Father: {}".format(obj.calculateProbability()[0]), 'probColor')
         T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]), 'probColor')
         T.tag_add("tag_name", "1.0", "end")
