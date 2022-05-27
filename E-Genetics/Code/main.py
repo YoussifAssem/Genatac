@@ -1,29 +1,33 @@
 #import pyrebase
 import hashlib
+from lib2to3 import refactor
 from flask import Flask,  redirect, render_template, request, url_for
 from Models.User import User
+from firebase_admin import credentials, firestore
+
 app = Flask(__name__)  # Initialze flask constructor
 user = User()
     
+db = firestore.client()
+
 userName = {"n": ""}
+getid = {"d": ""}
 
 @app.route("/")
 def login():
     return render_template("login.html")
 
-# Sign up/ Register
-
-
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
-
-# Welcome page
-
 
 @app.route("/welcome")
 def welcome():
-        return render_template("welcome.html", name=userName["n"])
+        hashedID = hashlib.sha256(getid["d"].encode('utf-8')).hexdigest()
+        print(hashedID)
+        test_result = db.collection('adminUsers').document(userName["n"]).collection('Results'
+        ).document(hashedID).get({
+            
+            'probabilityFather'
+    })  
+        return render_template("welcome.html", name=userName["n"], result=test_result.to_dict())
     
 # If someone clicks on login, they are redirected to /result
 
@@ -32,10 +36,14 @@ def welcome():
 def result():
     test = True
     if request.method == "POST":  # Only if data has been posted
-        result = request.form  # Get the data
+        
+        # Get the data
+        result = request.form  
         userName["n"] = str(result["name"])
-        password = hashlib.sha256(result["pass"].encode('utf-8')).hexdigest()
-        test = user.logIn(userName["n"], password)
+        getid["d"] = str(result["id"])
+        #password = hashlib.sha256(result["pass"].encode('utf-8')).hexdigest()
+        #test = user.logIn(userName["n"], password)
+        
         try:
             if(test):
               return redirect(url_for('result'))
