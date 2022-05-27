@@ -21,13 +21,16 @@ def login():
 @app.route("/welcome")
 def welcome():
         hashedID = hashlib.sha256(getid["d"].encode('utf-8')).hexdigest()
-        print(hashedID)
-        test_result = db.collection('adminUsers').document(userName["n"]).collection('Results'
+
+        result_related= db.collection('adminUsers').document(userName["n"]).collection('Results'
         ).document(hashedID).get({
-            
             'probabilityFather'
     })  
-        return render_template("welcome.html", name=userName["n"], result=test_result.to_dict())
+        result_not_related= db.collection('adminUsers').document(userName["n"]).collection('Results'
+        ).document(hashedID).get({
+            'probabilityNotFather'
+    }) 
+        return render_template("welcome.html", name=userName["n"], result1=result_related.to_dict(),result2=result_not_related.to_dict())
     
 # If someone clicks on login, they are redirected to /result
 
