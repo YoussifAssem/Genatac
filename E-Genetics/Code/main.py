@@ -6,13 +6,14 @@ from sqlalchemy import true
 from Models.User import User
 from firebase_admin import credentials, firestore
 
+
 app = Flask(__name__)  # Initialze flask constructor
 user = User()
     
 db = firestore.client()
 
-userName = {"n": ""}
-getid = {"d": ""}
+email = ''
+password = ''
 
 @app.route("/")
 
@@ -28,60 +29,53 @@ def signup():
 
     return render_template("signup.html")
 
+@app.route("/welcomePage")
+def welcomePage():
+    return render_template('welcome.html')
 
 
-@app.route("/welcome")
+@app.route("/welcome", methods=["POST", "GET"])
 def welcome():
-        hashedID = hashlib.sha256(getid["d"].encode('utf-8')).hexdigest()
+        
 
-        result_related= db.collection('adminUsers').document(userName["n"]).collection('Results'
-        ).document(hashedID).get({
-            'probabilityFather'
-    })  
-        result_not_related= db.collection('adminUsers').document(userName["n"]).collection('Results'
-        ).document(hashedID).get({
-            'probabilityNotFather'
-    }) 
-        return render_template("welcome.html", name=userName["n"], result1=result_related.to_dict(),result2=result_not_related.to_dict())
+    if request.method == "POST":
+        session = request.form
+        email = str(session['email'])
+        password = str(session['password'])
+        password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        print(email)
+        print(password)
+       
+        if(checkUser(email=email, password=password)):
+            if(True):
+                return redirect(url_for('welcomePage'))
+        # else:
+        #     return redirect(url_for('login'))
+
+def checkUser(email, password):
     
-# If someone clicks on login, they are redirected to /result
-
-
-@app.route("/result", methods=["POST", "GET"])
-def result():
-    test = True
-    if request.method == "POST":  # Only if data has been posted
-        
-        # Get the data
-        result = request.form  
-        userName["n"] = str(result["name"])
-        getid["d"] = str(result["id"])
-        #password = hashlib.sha256(result["pass"].encode('utf-8')).hexdigest()
-        #test = user.logIn(userName["n"], password)
-        
-        try:
-            if(test):
-              return redirect(url_for('result'))
-        except:
-            return redirect(url_for('login'))
+    
+    if(email == ''):
+        return redirect(url_for('login'))
     else:
-        if (test):
-            return redirect(url_for('welcome'))
+        docs = db.collection('Users').document(email)
+        val = docs.get().to_dict()
+        if(docs.get().exists):
+            if(val['email'] == email and val['password'] == password):
+                return True
         else:
-           return redirect(url_for('login'))
+            return False
+        
 
-# If someone clicks on register, they are redirected to /register
 
 
-@app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":  # Only listen to POST
-        result = request.form  # Get the data submitted
-        password = result["pass"]
-        name = result["name"]
+        
+        
         try:
-           if(user.logIn(name, password)):
-               return redirect(url_for('welcome'))
+           if(user.logIn(email, password)):
+               return redirect(url_for('welcome')) # mmkn aro7 ll el login
             
                 
             
@@ -90,7 +84,7 @@ def register():
             return redirect(url_for('register'))
 
     else:
-        if user.Registration(name, password):
+        if user.Registration(email, password):
             return redirect(url_for('welcome'))
         else:
             return redirect(url_for('register'))
