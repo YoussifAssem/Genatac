@@ -53,7 +53,7 @@ class _homeScreen extends State<homeScreen> {
               )),
           Center(
             child: Column(
-              children: [Image.asset('Images/paternity.jpg')],
+              children: [Image.asset('Images/p.jpg')],
             ),
           ),
           const SizedBox(

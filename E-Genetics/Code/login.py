@@ -9,6 +9,7 @@ from PIL import Image
 
   # Designing window for registration
 def newScreen(name):
+        user.getUser()
         os.system('python3 paternity.py ' + name)   
 def register():
     global register_screen
@@ -45,7 +46,7 @@ def login():
     login_screen.geometry("%dx%d" % (login_screen.winfo_screenwidth(), login_screen.winfo_screenheight()))
     Label(login_screen, text="Welcome In Genetics\n(Log In)", bg="darkblue", fg='white', width="300", height="2", font=("Calibri", 20, 'underline'), pady=50).pack()
     Label(login_screen, text="", pady=100).pack()
-   
+    
     
     global username_verify
     global password_verify

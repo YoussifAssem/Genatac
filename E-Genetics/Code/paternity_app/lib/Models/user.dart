@@ -1,6 +1,9 @@
 // ignore_for_file: non_constant_identifier_names, body_might_complete_normally_nullable
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class User {
@@ -37,6 +40,8 @@ class User {
               ref.set({
                 'name': getName(),
                 'email': getEmail(),
+                'password':
+                    sha256.convert(utf8.encode(getPassword())).toString()
               });
             }
           });

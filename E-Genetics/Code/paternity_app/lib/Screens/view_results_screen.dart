@@ -140,10 +140,10 @@ class _viewResults extends State<viewResults> {
                   Text(
                     doc['result'],
                     style: const TextStyle(
-                        fontSize: 23,
+                        fontSize: 30,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ].toList());
               }).toList(),
