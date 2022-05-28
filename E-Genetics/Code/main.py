@@ -2,6 +2,7 @@
 import hashlib
 from lib2to3 import refactor
 from flask import Flask,  redirect, render_template, request, url_for
+from sqlalchemy import true
 from Models.User import User
 from firebase_admin import credentials, firestore
 
@@ -14,8 +15,19 @@ userName = {"n": ""}
 getid = {"d": ""}
 
 @app.route("/")
+
+
+@app.route("/login")
 def login():
+
     return render_template("login.html")
+
+
+@app.route("/signup")
+def signup():
+
+    return render_template("signup.html")
+
 
 
 @app.route("/welcome")
@@ -69,7 +81,10 @@ def register():
         name = result["name"]
         try:
            if(user.logIn(name, password)):
-            return redirect(url_for('welcome'))
+               return redirect(url_for('welcome'))
+            
+                
+            
         except:
             # If there is any error, redirect to register
             return redirect(url_for('register'))
@@ -82,4 +97,4 @@ def register():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
