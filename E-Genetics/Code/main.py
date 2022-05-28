@@ -2,18 +2,13 @@
 import hashlib
 from lib2to3 import refactor
 from flask import Flask,  redirect, render_template, request, url_for
-from sqlalchemy import true
-from Models.User import User
+from Models.normalUser import User
 from firebase_admin import credentials, firestore
 
 
 app = Flask(__name__)  # Initialze flask constructor
 user = User()
     
-db = firestore.client()
-
-email = ''
-password = ''
 
 @app.route("/")
 
@@ -41,36 +36,21 @@ def welcome():
     if request.method == "POST":
         session = request.form
         email = str(session['email'])
-        password = str(session['password'])
-        password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        print(email)
-        print(password)
-       
-        if(checkUser(email=email, password=password)):
-            if(True):
+        password = hashlib.sha256(str(session['password']).encode('utf-8')).hexdigest()
+        if(user.logIn(email, password)):
                 return redirect(url_for('welcomePage'))
+        else:
+            return redirect(url_for('login'))        
         # else:
         #     return redirect(url_for('login'))
-
-def checkUser(email, password):
-    
-    
-    if(email == ''):
-        return redirect(url_for('login'))
-    else:
-        docs = db.collection('Users').document(email)
-        val = docs.get().to_dict()
-        if(docs.get().exists):
-            if(val['email'] == email and val['password'] == password):
-                return True
-        else:
-            return False
-        
 
 
 
 def register():
     if request.method == "POST":  # Only listen to POST
+        session = request.form
+        email = str(session['email'])
+        password = str(session['password'])
         
         
         try:
