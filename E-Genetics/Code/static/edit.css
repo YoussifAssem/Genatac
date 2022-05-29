@@ -35,7 +35,11 @@ body{
 }
 
 .contact-form{
-  display: flex;
+  text-align: center;
+  margin-bottom: 25px;
+  font-style: normal;
+  font-weight: bold;
+  
 }
 
 .input-fields{
@@ -79,12 +83,9 @@ body{
 
 .btn {
     background: #385480;
-    
+    color: white;
     padding: 15px;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    text-transform: uppercase;
+    
 }
 
 
