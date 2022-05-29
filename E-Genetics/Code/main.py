@@ -18,7 +18,7 @@ user = User()
 def login():
 
     return render_template("login.html")
-
+'''
 @app.route("/edit")
 def edit():
     return render_template("editprofile.html")
@@ -28,7 +28,7 @@ def edit():
 def signup():
 
     return render_template("signup.html")
-'''
+
 @app.route("/Home")
 def home():
      return render_template('menu.html')
@@ -65,8 +65,7 @@ def welcome():
         # else:
         #     return redirect(url_for('login'))
 
-
-
+'''
 def register():
     if request.method == "POST":  # Only listen to POST
         session = request.form
@@ -89,7 +88,7 @@ def register():
             return redirect(url_for('welcome'))
         else:
             return redirect(url_for('register'))
-
+'''
 
 if __name__ == "__main__":
     app.run(debug=True)
