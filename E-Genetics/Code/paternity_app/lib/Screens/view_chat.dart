@@ -38,9 +38,7 @@ class _viewChat extends State<viewChat> {
           )
         ],
       ),
-      
       body: StreamBuilder<QuerySnapshot>(
-        
         stream: FirebaseFirestore.instance.collection('adminUsers').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -50,26 +48,31 @@ class _viewChat extends State<viewChat> {
             );
           }
           //mn 2awl hna
-          
+
           return ListView(
-            padding: const EdgeInsets.only(top : 5,),
+            padding: const EdgeInsets.only(
+              top: 5,
+            ),
             children: snapshot.data!.docs.map((doc) {
               return Column(
-                
-                  
                   children: [
-                    
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Container(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),      
-                  margin: const EdgeInsets.only(right: 10, left: 10,),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  margin: const EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                  ),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Colors.white,
                   ),
                   child: ListTile(
-                    leading: const CircleAvatar(radius: 30,
-                   backgroundImage: AssetImage("images/contact.png"),
+                    leading: const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage("Images/contact.png"),
                     ),
                     onTap: () {
                       Navigator.push(
@@ -79,7 +82,6 @@ class _viewChat extends State<viewChat> {
                     },
                     title: Text(
                       doc['userName'].toString(),
-                      
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,

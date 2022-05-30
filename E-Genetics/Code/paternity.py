@@ -3,6 +3,7 @@ from unicodedata import name
 import pandas as pd
 from Models.User import User
 from Models.relevance import Relevance
+from Models.whole import wholeGenome
 from tkinter import  StringVar, Tk, Label, Button, Text, END, Toplevel, Label, Entry,  messagebox
 from PIL import ImageTk
 from PIL import Image  
@@ -10,7 +11,6 @@ from tkinter.filedialog import askopenfile
 import hashlib
 import sys  
 
-from bio import Whole
 def destroyScreens():
   root.destroy()
 
@@ -246,21 +246,23 @@ def viewWholeGenome(seq):
         
         T = Text(viewScreen, height=100, width=600, bg='white', fg='black', font='Helvetica 18 bold')
         T.tag_configure("tag_name", justify='center')
-        T.tag_config('warningColor', foreground='red')
         T.tag_config('titleColor', foreground='green')
-        T.insert(END, '\n\n\n\n\nThe STR for Alleles in whole Genome \n\n\n', 'titleColor')
-        T.insert(END, seq, 'warningColor')
+        T.insert(END, seq, 'titleColor')
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
         T.pack(pady=200, padx=500)
         
 def wholeGenome():
-  file = askopenfile(mode ='r', filetypes =[('Python Files', '*.fsa')]) 
+  file = askopenfile(mode ='r', filetypes =[('Python Files', '*.txt')])
+  wG = wholeGenome()
   if file is not None:
-    wG = Whole()
-    wG.runAlgorithm(file.name)
-    viewWholeGenome(wG.getSequence())
-
+    wG.selectedFile(file.name)
+  doc = wG.getwholeGenome()
+  wG.reInitialize()
+  file2 = askopenfile(mode ='r', filetypes =[('Python Files', '*.txt')]) 
+  if file2 is not None:
+    wG.selectedFile(file2.name)
+  viewWholeGenome(wG.getResults(doc))
 if __name__ == "__main__":
   obj = User()
   root = Tk(className='Python Examples - Window Color')  

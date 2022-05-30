@@ -9,7 +9,6 @@ from PIL import Image
 
   # Designing window for registration
 def newScreen(name):
-        user.getUser()
         os.system('python3 paternity.py ' + name)   
 def register():
     global register_screen
