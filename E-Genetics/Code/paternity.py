@@ -132,7 +132,7 @@ def open_file():
       T.insert(END, '\nNOT Similar ID: {}'.format(done['notSimilarID'][0:5]))
       T.insert(END, '\nNo of people Related to this Family: {}'.format(len(done['similarID'])), 'warningColor')
       T.insert(END, '\nNo of people is Not Related to this Family: {}'.format(len(done['notSimilarID'])), 'warningColor')
-      T.insert(END, '\nProbability of father: {}'.format(relevance.getProbability()), 'warningColor')
+      T.insert(END, '\nProbability of relative: {}'.format(relevance.getProbability()), 'warningColor')
       T.tag_add("tag_name", "1.0", "end")
       T.config(state='disabled')
       T.pack(pady=200, padx=500)
@@ -217,8 +217,8 @@ def open_file():
         
         T.insert(END, "\n----------------------------------------")
         
-        T.insert(END, "\nSo, The Probability this may be the Father: {}".format(obj.calculateProbability()[0]), 'probColor')
-        T.insert(END, "\nSo, The Probability this may Not be the Father: {}".format(obj.calculateProbability()[1]), 'probColor')
+        T.insert(END, "\nSo, The Probability this may be the father: {}".format(obj.calculateProbability()[0]), 'probColor')
+        T.insert(END, "\nSo, The Probability this may Not be the father: {}".format(obj.calculateProbability()[1]), 'probColor')
         T.tag_add("tag_name", "1.0", "end")
         T.config(state='disabled')
         T.pack(pady=200, padx=500)
